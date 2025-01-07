@@ -1,0 +1,152 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Coupon {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  couponCode String
+  expiryDate DateTime
+  isActive   Boolean
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Banner {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  link      String
+  imageUrl  String
+  isActive  Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String     @unique
+  imageUrl    String?
+  description String?
+  isActive    Boolean
+  products    Product[]
+  training    Training[]
+
+  marketIds String[] @db.ObjectId
+  markets   Market[] @relation(fields: [marketIds], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Market {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  slug        String  @unique
+  logoUrl     String?
+  description String?
+  isActive    Boolean
+
+  categoryIds String[]   @db.ObjectId
+  categories  Category[] @relation(fields: [categoryIds], references: [id])
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @updatedAt
+}
+
+model Product {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  isActive     Boolean
+  description  String
+  tags         String[]
+  imageUrl     String
+  salePrice    Float
+  productPrice Float
+  barcode      String
+  sku          String
+  title        String
+  slug         String   @unique
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @db.ObjectId
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @db.ObjectId
+
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime?      @updatedAt
+  SellerProfile   SellerProfile? @relation(fields: [sellerProfileId], references: [id])
+  sellerProfileId String?        @db.ObjectId
+}
+
+model Training {
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  isActive    Boolean
+  content     String
+  imageUrl    String
+  description String
+  title       String
+  slug        String  @unique
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  SELLER
+  MODERATOR
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  password      String?
+  emailVerified DateTime?
+  Products      Product[]
+
+  role          UserRole       @default(USER)
+  sellerProfile SellerProfile?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model SellerProfile {
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  code               String
+  isActive           Boolean
+  notes              String?
+  terms              String?
+  date               DateTime
+  contactPersonPhone String?
+  contactPerson      String?
+  sellersPhysical    String?
+  profileImageUrl    String?
+  email              String
+  phone              String
+  name               String
+
+  Products Product[]
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
