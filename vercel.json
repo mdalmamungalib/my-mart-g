@@ -1,10 +1,8 @@
 {
-  "build": {
-    "env": {
-      "DATABASE_URL": "mongodb+srv://rodriguezclermenas:nTqU0Nqtw9HmMPRA@my-mart.o3j7x.mongodb.net/myMartDB?retryWrites=true&w=majority&appName=My-Mart"
-    },
-    "commands": [
-      "npx prisma generate"
-    ]
+    "build": {
+      "env": {
+        "DATABASE_URL": "mongodb+srv://rodriguezclermenas:nTqU0Nqtw9HmMPRA@my-mart.o3j7x.mongodb.net/myMartDB?retryWrites=true&w=majority&appName=My-Mart"
+      }
+    }
   }
-}
+  
