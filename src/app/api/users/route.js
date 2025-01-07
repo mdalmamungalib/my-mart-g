@@ -5,11 +5,8 @@ import bcrypt from "bcrypt";
 export async function POST(request) {
   try {
     //extract use credentials
-<<<<<<< HEAD
+
     const { name, email, password, role } = await request.json();
-=======
-    const { name, email, password } = await request.json();
->>>>>>> origin/main
     //check if user already exists by email address  (for uniqueness)
     const existingUser = await db.user.findUnique({
       where: {
@@ -33,10 +30,7 @@ export async function POST(request) {
         name,
         email,
         password: hashedPassword,
-<<<<<<< HEAD
         role,
-=======
->>>>>>> origin/main
       },
     });
     console.log(newUser);
@@ -70,11 +64,9 @@ export async function GET(request) {
   } catch (error) {
     return NextResponse.json(
       {
-<<<<<<< HEAD
         message: "Failed to Get User",
-=======
+
         message: "Failed to create User",
->>>>>>> origin/main
         error,
       },
       { status: 500 }

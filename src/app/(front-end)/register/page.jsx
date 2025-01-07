@@ -20,11 +20,8 @@ export default function Register() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white">
               Create a new account
             </h1>
-<<<<<<< HEAD
-            <RegisterForm role={"USER"}/>
-=======
-            <RegisterForm />
->>>>>>> origin/main
+
+            <RegisterForm role={"USER"} />
           </div>
         </div>
       </div>

@@ -6,23 +6,14 @@ import TextInput from "components/Forminput/TextInput.jsx";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-<<<<<<< HEAD
+
 import { makePostRequest } from "lib/apiRequest.js";
 import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation.js";
 import ImageInput from "components/Forminput/ImageInput.jsx";
 import NewSellerForm from "components/backoffice/NewSellerForm/NewSellerForm";
 
-const NewSeller = () => {
-  return (
-    <div className="p-5">
-      <FormHeader title={"New Seller"} />
-      <NewSellerForm />
-=======
-import { makePostRequest } from "../../../../../lib/apiRequest.js";
-import generateUserCode from "../../../../../lib/generateUserCode.js";
-import { useRouter } from "next/navigation.js";
-import ImageInput from "components/Forminput/ImageInput.jsx";
+
 
 const NewSeller = () => {
   const [profileImageUrl, setProfileImageUrl] = useState("");
@@ -169,7 +160,6 @@ const NewSeller = () => {
         -title,
         -slug,
            */}
->>>>>>> origin/main
     </div>
   );
 };

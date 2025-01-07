@@ -8,11 +8,7 @@ export default function Home() {
         Welcome to My Mart Ecomarche
       </h1>
 
-<<<<<<< HEAD
       <Link href={"/register-seller"}> Become a seller</Link>
-=======
-      <Link href={"/register-farmer"}> Become a farmer</Link>
->>>>>>> origin/main
     </div>
   );
 }
