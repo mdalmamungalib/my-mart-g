@@ -10,11 +10,13 @@ import { makePostRequest } from "lib/apiRequest.js";
 import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation.js";
 import ImageInput from "components/Forminput/ImageInput.jsx";
+import ArrayItemsInput from "components/Forminput/ArrayItemsInput";
 
 const NewSellerForm = ({ user }) => {
   const [profileImageUrl, setProfileImageUrl] = useState("");
   // loading
   const [loading, setLoading] = useState(false);
+  const [products, setProducts] = useState([]);
 
   const {
     register,
@@ -36,6 +38,9 @@ const NewSellerForm = ({ user }) => {
     setLoading(true);
     const code = generateUserCode("LFF", data.name);
     data.code = code;
+    data.userId = user.id;
+    data.products = products;
+    data.profileImageUrl = profileImageUrl;
     console.log(data);
     makePostRequest(
       setLoading,
@@ -52,6 +57,7 @@ const NewSellerForm = ({ user }) => {
       className="w-full max-w-5xl p-4 mx-auto mt-12 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
     >
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
+       
         <TextInput
           label="Seller's Full Name"
           name="name"
@@ -93,6 +99,28 @@ const NewSellerForm = ({ user }) => {
           register={register}
           errors={errors}
           className="w-full"
+        />
+        {/* Accare */}
+        <TextInput
+          label="What is the size of your Store in Fits"
+          name="storeSize"
+          type="number"
+          register={register}
+          errors={errors}
+          className="w-full"
+        />
+        <TextInput
+          label="What is your main Product"
+          name="mainProduct"
+          type="text"
+          register={register}
+          errors={errors}
+          className="w-full"
+        />
+        <ArrayItemsInput
+          setItems={setProducts}
+          items={products}
+          itemTitle={"Product"}
         />
         <ImageInput
           imageUrl={profileImageUrl}

@@ -141,6 +141,9 @@ model SellerProfile {
   email              String
   phone              String
   name               String
+  products           String[]
+  storeSize          Float
+  mainProduct        String
 
   Products Product[]
 
