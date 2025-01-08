@@ -16,7 +16,7 @@ const page = async ({ params: { id } }) => {
         </p>
       </div>
       <div className="max-w-full mx-auto ">
-        <NewSellerForm />
+        <NewSellerForm user={user}/>
       </div>
     </div>
   );

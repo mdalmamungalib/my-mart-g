@@ -11,7 +11,7 @@ import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation.js";
 import ImageInput from "components/Forminput/ImageInput.jsx";
 
-const NewSellerForm = () => {
+const NewSellerForm = ({ user }) => {
   const [profileImageUrl, setProfileImageUrl] = useState("");
   // loading
   const [loading, setLoading] = useState(false);
@@ -23,7 +23,7 @@ const NewSellerForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { isActive: true },
+    defaultValues: { isActive: true, ...user },
   });
 
   const isActive = watch("isActive");

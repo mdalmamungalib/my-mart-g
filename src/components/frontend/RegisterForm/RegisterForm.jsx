@@ -8,7 +8,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-export default function RegisterForm({ role }) {
+export default function RegisterForm({ role = "USER" }) {
   const router = useRouter();
   const {
     register,
@@ -37,7 +37,11 @@ export default function RegisterForm({ role }) {
         setLoading(false);
         toast.success("User Created Successfully");
         reset();
-        router.push("/");
+        if (role === "USER") {
+          router.push("/");
+        } else {
+          router.push(`/onboarding/${responseData?.data?.id}`);
+        }
       } else {
         setLoading(false);
         if (response.status === 409) {
