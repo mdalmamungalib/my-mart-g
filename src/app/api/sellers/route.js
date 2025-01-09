@@ -25,7 +25,7 @@ export async function POST(request) {
         isActive: sellerData.isActive,
         notes: sellerData.notes,
         terms: sellerData.terms,
-        date: sellerData.date,
+        date: sellerData.date || new Date(),
         contactPersonPhone: sellerData.contactPersonPhone,
         contactPerson: sellerData.contactPerson,
         sellersPhysical: sellerData.sellersPhysical,
@@ -39,7 +39,7 @@ export async function POST(request) {
         userId: sellerData.userId,
       },
     });
-    console.log(newSellerProfile);
+    console.log("data",newSellerProfile);
     return NextResponse.json(newSellerProfile);
   } catch (error) {
     return NextResponse.json(
@@ -64,7 +64,7 @@ export async function GET(request) {
   } catch (error) {
     return NextResponse.json(
       {
-        message: "Failed to create profiles",
+        message: "Failed to get profiles",
         error,
       },
       { status: 500 }
