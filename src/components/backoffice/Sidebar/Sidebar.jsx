@@ -116,7 +116,7 @@ const Sidebar = ({ showSidebar }) => {
       <div className="flex flex-col space-y-3 ">
         <Link
           onClick={() => showSidebar(false)}
-          href={"/dashboard"}
+          href="/dashboard"
           className={
             pathname === "/dashboard"
               ? "flex items-center px-6 py-2 space-x-3 border-l-4 border-green-600 rounded text-[#04bd7f]"

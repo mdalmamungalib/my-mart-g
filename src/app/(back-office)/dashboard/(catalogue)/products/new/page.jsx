@@ -1,11 +1,11 @@
 "use client";
-import { makePostRequest } from "../../../../../../lib/apiRequest.js";
+import { makePostRequest } from "lib/apiRequest.js";
 import FormHeader from "components/backoffice/FormHeader/FormHeader.jsx";
 import ImageInput from "components/Forminput/ImageInput.jsx";
 import SubmitButton from "components/Forminput/SubmitButton.jsx";
 import TextareaInput from "components/Forminput/TextareaInput.jsx";
 import TextInput from "components/Forminput/TextInput.jsx";
-import { generateSlug } from "../../../../../../lib/generateSlug.js";
+import { generateSlug } from "lib/generateSlug.js";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import SelectInput from "components/Forminput/SelectInput.jsx";
@@ -66,10 +66,17 @@ const NewProduct = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { isActive: true },
+    defaultValues: {
+      isActive: true,
+      isWholesale: false,
+      isMultiple: false,
+    },
   });
 
   const isActive = watch("isActive");
+  const isWholesale = watch("isWholesale");
+  const isMultiple = watch("isMultiple");
+  console.log("value", isMultiple);
 
   async function onSubmit(data) {
     setLoading(true);
@@ -110,6 +117,13 @@ const NewProduct = () => {
             className="w-full"
           />
           <TextInput
+            label="Unit Measurement(eg kilograms)"
+            name="unit"
+            register={register}
+            errors={errors}
+            className="w-full"
+          />
+          <TextInput
             label="Product Barcode"
             name="barcode"
             register={register}
@@ -133,25 +147,24 @@ const NewProduct = () => {
             className="w-full"
           />
           <div>
-          
-          <SelectInput
-            label="Select Category"
-            name="categoryId"
-            register={register}
-            errors={errors}
-            className="w-full"
-            options={categories}
-            multiple={multiple}
-          />
-          <MultipleToggleInput
-            onToggle={handleToggleChange}
-            name="product"
-            register={register}
-            errors={errors}
-            label={"Multiple Category & Single Category"}
-            multiple={"Multiple"}
-            single={"Single"}
-          />
+            <SelectInput
+              label="Select Category"
+              name="categoryId"
+              register={register}
+              errors={errors}
+              className="w-full"
+              options={categories}
+              multiple={isMultiple}
+            />
+
+            <ToggleInput
+              label={"Multiple Category & Single Category"}
+              name={"isMultiple"}
+              trueTitle={"Multiple"}
+              falseTitle={"Single"}
+              register={register}
+              defaultChecked={isMultiple}
+            />
           </div>
           <SelectInput
             label="Select Sellers"
@@ -161,6 +174,35 @@ const NewProduct = () => {
             className="w-full"
             options={sellers}
           />
+          <ToggleInput
+            label={"Supports Wholesale Selling"}
+            name={"isWholesale"}
+            trueTitle={"Supported"}
+            falseTitle={"Not Supported"}
+            register={register}
+            defaultChecked={isWholesale}
+          />
+
+          {isWholesale && (
+            <>
+              <TextInput
+                label="Wholesale Price"
+                type="number"
+                name="wholesalePrice"
+                register={register}
+                errors={errors}
+                className="w-full"
+              />
+              <TextInput
+                label="Minimum Wholesale Qty"
+                type="number"
+                name="minimumWholeQty"
+                register={register}
+                errors={errors}
+                className="w-full"
+              />
+            </>
+          )}
 
           <ImageInput
             imageUrl={imageUrl}
@@ -183,11 +225,12 @@ const NewProduct = () => {
 
           {/* toggle input */}
           <ToggleInput
-            name={"isActive"}
-            register={register}
             label={"Publish Your Product"}
-            falseTitle={"Draft"}
+            name={"isActive"}
             trueTitle={"Active"}
+            falseTitle={"Draft"}
+            register={register}
+            defaultChecked={isActive}
           />
         </div>
 
