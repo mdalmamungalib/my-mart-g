@@ -13,6 +13,7 @@ import { Plus, X } from "lucide-react";
 import ArrayItemsInput from "components/Forminput/ArrayItemsInput.jsx";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import MultipleToggleInput from "components/Forminput/MultipleToggleInput.jsx";
+import generateUserCode from "lib/generateUserCode";
 
 const NewProduct = () => {
   const [imageUrl, setImageUrl] = useState("");
@@ -81,19 +82,22 @@ const NewProduct = () => {
   async function onSubmit(data) {
     setLoading(true);
     const slug = generateSlug(data?.title);
+    const productCode = generateUserCode("LLP", data.title);
     data.tags = tags;
     data.slug = slug;
+    data.qty = 1;
+    data.productCode = productCode;
     data.imageUrl = imageUrl;
     console.log(data);
 
-    makePostRequest(
-      setLoading,
-      "api/products",
-      data,
-      "Product",
-      reset
-    );
-    setImageUrl("");
+    // makePostRequest(
+    //   setLoading,
+    //   "api/products",
+    //   data,
+    //   "Product",
+    //   reset
+    // );
+    // setImageUrl("");
   }
   return (
     <div>
@@ -116,13 +120,7 @@ const NewProduct = () => {
             errors={errors}
             className="w-full"
           />
-          <TextInput
-            label="Unit Measurement(eg kilograms)"
-            name="unit"
-            register={register}
-            errors={errors}
-            className="w-full"
-          />
+           Wholesale Selling
           <TextInput
             label="Product Barcode"
             name="barcode"
@@ -139,13 +137,22 @@ const NewProduct = () => {
             className="w-full"
           />
           <TextInput
-            label="Product Price (Discounted)"
+            label="Product Sale Price (Discounted)"
             type="number"
             name="salePrice"
             register={register}
             errors={errors}
             className="w-full"
           />
+          <TextInput
+            label="Product Stock"
+            type="number"
+            name="productStock"
+            register={register}
+            errors={errors}
+            className="w-full"
+          />
+
           <div>
             <SelectInput
               label="Select Category"
@@ -166,22 +173,24 @@ const NewProduct = () => {
               defaultChecked={isMultiple}
             />
           </div>
-          <SelectInput
-            label="Select Sellers"
-            name="sellerId"
-            register={register}
-            errors={errors}
-            className="w-full"
-            options={sellers}
-          />
-          <ToggleInput
-            label={"Supports Wholesale Selling"}
-            name={"isWholesale"}
-            trueTitle={"Supported"}
-            falseTitle={"Not Supported"}
-            register={register}
-            defaultChecked={isWholesale}
-          />
+          <div>
+            <SelectInput
+              label="Select Sellers"
+              name="sellerId"
+              register={register}
+              errors={errors}
+              className="w-full"
+              options={sellers}
+            />
+            <ToggleInput
+              label={"Supports Wholesale Selling"}
+              name={"isWholesale"}
+              trueTitle={"Supported"}
+              falseTitle={"Not Supported"}
+              register={register}
+              defaultChecked={isWholesale}
+            />
+          </div>
 
           {isWholesale && (
             <>

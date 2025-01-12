@@ -16,6 +16,11 @@ export async function POST(request) {
       sku,
       title,
       slug,
+      productCode,
+      minimumWholeQty,
+      wholesalePrice,
+      isMultiple,
+      isWholesale,
     } = await request.json();
     const newProduct = await db.product.create({
       data: {
@@ -31,6 +36,11 @@ export async function POST(request) {
         sku,
         title,
         slug,
+        productCode,
+        minimumWholeQty,
+        wholesalePrice,
+        isMultiple,
+        isWholesale,
       },
     });
     console.log(newProduct);

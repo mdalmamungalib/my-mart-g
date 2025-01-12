@@ -51,6 +51,9 @@ export default withUt({
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+        lime: {
+          450: '#84AC0F', 
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

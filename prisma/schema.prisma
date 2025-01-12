@@ -128,24 +128,31 @@ model User {
 }
 
 model SellerProfile {
-  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
-  code               String
-  isActive           Boolean
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  code String
+
+  date               DateTime
   notes              String?
   terms              String?
-  date               DateTime
   contactPersonPhone String?
   contactPerson      String?
   sellersPhysical    String?
   profileImageUrl    String?
+  productCode        String?
   email              String
   phone              String
   name               String
-  products           String[]
-  storeSize          Float
   mainProduct        String
-
-  Products Product[]
+  products           String[]
+  wholesalePrice     Float
+  storeSize          Float
+  isActive           Boolean
+  isMultiple         Boolean
+  isWholesale        Boolean
+  minimumWholeQty    Int
+  productStock       Int
+  qty                Int
+  Products           Product[]
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @unique @db.ObjectId
