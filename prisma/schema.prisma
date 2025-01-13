@@ -66,20 +66,30 @@ model Market {
 }
 
 model Product {
-  id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  isActive     Boolean
-  description  String
-  tags         String[]
-  imageUrl     String
-  salePrice    Float
-  productPrice Float
-  barcode      String
-  sku          String
-  title        String
-  slug         String   @unique
+  id              String   @id @default(auto()) @map("_id") @db.ObjectId
+  isActive        Boolean
+  description     String
+  tags            String[]
+  imageUrl        String
+  salePrice       Float
+  productPrice    Float
+  barcode         String
+  sku             String
+  title           String
+  slug            String   @unique
+  mainProduct     String
+  products        String[]
+  wholesalePrice  Float
+  storeSize       Float
+  isMultiple      Boolean
+  isWholesale     Boolean
+  minimumWholeQty Int
+  productStock    Int
+  qty             Int
+  productCode     String?
 
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId String   @db.ObjectId
+  categoryIds String[]   @db.ObjectId
+  categories  Category[] @relation(fields: [categoryIds], references: [id])
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @db.ObjectId
@@ -138,25 +148,15 @@ model SellerProfile {
   contactPerson      String?
   sellersPhysical    String?
   profileImageUrl    String?
-  productCode        String?
-  email              String
-  phone              String
-  name               String
-  mainProduct        String
-  products           String[]
-  wholesalePrice     Float
-  storeSize          Float
-  isActive           Boolean
-  isMultiple         Boolean
-  isWholesale        Boolean
-  minimumWholeQty    Int
-  productStock       Int
-  qty                Int
-  Products           Product[]
+
+  email String
+  phone String
+  name  String
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @unique @db.ObjectId
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Product   Product[]
 }

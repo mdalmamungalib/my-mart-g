@@ -23,7 +23,7 @@ import ThemeSwitcherBtn from "../../../components/ThemeSwitcherBtn/ThemeSwitcher
 
 const Navbar = ({ setShowSideBar, showSidebar }) => {
   return (
-    <div className="flex items-center justify-between bg-slate-100 dark:bg-[#122136] h-16 z-50 px-8 py-8 fixed w-full text-[#04bd7f]">
+    <div className="flex items-center justify-between bg-slate-100 dark:bg-[#122136] h-16 z-50 px-8 py-8 fixed w-full text-lime-600">
       {/* icon */}
       <button onClick={() => setShowSideBar(!showSidebar)}>
         <AlignJustify />
@@ -38,7 +38,7 @@ const Navbar = ({ setShowSideBar, showSidebar }) => {
               type="button"
               className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-transparent "
             >
-              <Bell className="text-[#04bd7f]" />
+              <Bell className="text-lime-600" />
               <span className="sr-only">Notifications</span>
               <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-0 end-6 ">
                 20

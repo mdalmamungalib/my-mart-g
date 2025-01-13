@@ -119,7 +119,7 @@ const Sidebar = ({ showSidebar }) => {
           href="/dashboard"
           className={
             pathname === "/dashboard"
-              ? "flex items-center px-6 py-2 space-x-3 border-l-4 border-green-600 rounded text-[#04bd7f]"
+              ? "flex items-center px-6 py-2 space-x-3 border-l-4 border-green-600 rounded text-lime-600"
               : "flex items-center px-6 py-2 space-x-3"
           }
         >
@@ -175,7 +175,7 @@ const Sidebar = ({ showSidebar }) => {
               href={item?.link}
               className={
                 item?.link === pathname
-                  ? "flex items-center px-6 py-2 space-x-3 border-l-4 border-green-600 rounded text-[#04bd7f]"
+                  ? "flex items-center px-6 py-2 space-x-3 border-l-4 border-green-600 rounded text-lime-600"
                   : "flex items-center px-6 py-2 space-x-3"
               }
             >
@@ -186,7 +186,7 @@ const Sidebar = ({ showSidebar }) => {
           );
         })}
         <div className="px-6 py-2">
-          <button className="flex items-center justify-center px-14 py-3 bg-[#04bd7f] rounded-xl space-x-2">
+          <button className="flex items-center justify-center py-3 space-x-2 px-14 bg-lime-600 hover:bg-lime-600/90 rounded-xl">
             <LogOut />
             <span>Logout</span>
           </button>

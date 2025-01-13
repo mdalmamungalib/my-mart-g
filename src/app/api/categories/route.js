@@ -14,6 +14,7 @@ export async function POST(request) {
       if(existingCategory) {
         return NextResponse.json(
           {
+            data: null,
             message: "The Category already exists",
           },
           { status: 409 }
@@ -46,7 +47,7 @@ export async function GET(request) {
   } catch (error) {
     return NextResponse.json(
       {
-        message: "Failed to create Category",
+        message: "Failed to get Category",
         error,
       },
       { status: 500 }
