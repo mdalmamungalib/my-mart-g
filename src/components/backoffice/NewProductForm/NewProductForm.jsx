@@ -15,7 +15,7 @@ import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import generateUserCode from "lib/generateUserCode";
 import { useRouter } from "next/navigation";
 
-const NewProductForm = ({ categories, sellers }) => {
+const NewProductForm = ({categories, sellers}) => {
   const [imageUrl, setImageUrl] = useState("");
   const [multiple, stMultiple] = useState(false);
 
@@ -25,6 +25,8 @@ const NewProductForm = ({ categories, sellers }) => {
 
   // tags
   const [tags, setTags] = useState([]);
+
+
 
   // loading
   const [loading, setLoading] = useState(false);
@@ -46,11 +48,11 @@ const NewProductForm = ({ categories, sellers }) => {
   const isActive = watch("isActive");
   const isWholesale = watch("isWholesale");
   const isMultiple = watch("isMultiple");
-
+  
   // redirect functionality
   const router = useRouter();
-  function redirect() {
-    router.push("/dashboard/products");
+  function redirect(){
+    router.push("/dashboard/products")
   }
 
   async function onSubmit(data) {
@@ -73,7 +75,7 @@ const NewProductForm = ({ categories, sellers }) => {
       redirect
     );
     setImageUrl("");
-    setTags([]);
+    setTags([])
   }
   return (
     <div>
@@ -96,7 +98,7 @@ const NewProductForm = ({ categories, sellers }) => {
             errors={errors}
             className="w-full"
           />
-
+          
           <TextInput
             label="Product Barcode"
             name="barcode"
@@ -132,12 +134,12 @@ const NewProductForm = ({ categories, sellers }) => {
           <div>
             <SelectInput
               label="Select Category"
-              name="categoryId"
+              name="categoryIds"
               register={register}
               errors={errors}
               className="w-full"
               options={categories}
-              multiple={isMultiple}
+              // multiple={isMultiple}
             />
 
             <ToggleInput
@@ -149,23 +151,24 @@ const NewProductForm = ({ categories, sellers }) => {
               defaultChecked={isMultiple}
             />
           </div>
-
-          <SelectInput
-            label="Select Sellers"
-            name="sellerId"
-            register={register}
-            errors={errors}
-            className="w-full"
-            options={sellers}
-          />
-          <ToggleInput
-            label={"Supports Wholesale Selling"}
-            name={"isWholesale"}
-            trueTitle={"Supported"}
-            falseTitle={"Not Supported"}
-            register={register}
-            defaultChecked={isWholesale}
-          />
+          
+            <SelectInput
+              label="Select Sellers"
+              name="sellerId"
+              register={register}
+              errors={errors}
+              className="w-full"
+              options={sellers}
+            />
+            <ToggleInput
+              label={"Supports Wholesale Selling"}
+              name={"isWholesale"}
+              trueTitle={"Supported"}
+              falseTitle={"Not Supported"}
+              register={register}
+              defaultChecked={isWholesale}
+            />
+          
 
           {isWholesale && (
             <>

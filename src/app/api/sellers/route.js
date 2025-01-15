@@ -42,6 +42,7 @@ export async function POST(request) {
     console.log("data",newSellerProfile);
     return NextResponse.json(newSellerProfile);
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       {
         message: "Failed to create Seller",

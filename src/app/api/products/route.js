@@ -90,6 +90,7 @@ export async function POST(request) {
     console.log(newProduct);
     return NextResponse.json(newProduct);
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       {
         message: "Failed to create Product",

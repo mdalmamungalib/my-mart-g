@@ -67,29 +67,27 @@ model Market {
 
 model Product {
   id              String   @id @default(auto()) @map("_id") @db.ObjectId
-  isActive        Boolean
-  description     String
-  tags            String[]
-  imageUrl        String
-  salePrice       Float
-  productPrice    Float
   barcode         String
-  sku             String
-  title           String
-  slug            String   @unique
-  mainProduct     String
-  products        String[]
-  wholesalePrice  Float
-  storeSize       Float
+  description     String
+  imageUrl        String
+  isActive        Boolean
   isMultiple      Boolean
   isWholesale     Boolean
   minimumWholeQty Int
+  productCode     String?
+  productPrice    Float
   productStock    Int
   qty             Int
-  productCode     String?
+  salePrice       Float
+  // sellerId        String
+  sku             String
+  slug            String   @unique
+  tags            String[]
+  title           String
+  wholesalePrice  Float
 
-  categoryIds String[]   @db.ObjectId
-  categories  Category[] @relation(fields: [categoryIds], references: [id])
+  category    Category @relation(fields: [categoryIds], references: [id])
+  categoryIds String   @db.ObjectId
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @db.ObjectId
@@ -138,9 +136,8 @@ model User {
 }
 
 model SellerProfile {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
-  code String
-
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId
+  code               String
   date               DateTime
   notes              String?
   terms              String?
@@ -148,10 +145,16 @@ model SellerProfile {
   contactPerson      String?
   sellersPhysical    String?
   profileImageUrl    String?
-
-  email String
-  phone String
-  name  String
+  mainProduct        String
+  email              String
+  phone              String
+  name               String
+  // role
+  products           String[]
+  // password
+  isActive           Boolean
+  // emailVerified
+  storeSize          Float
 
   user   User   @relation(fields: [userId], references: [id])
   userId String @unique @db.ObjectId
