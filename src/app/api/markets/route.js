@@ -5,18 +5,18 @@ export async function POST(request) {
   try {
     const {
       isActive,
+      categoryIds,
       description,
       logoUrl,
-      categoryIds,
       title,
       slug,
     } = await request.json();
     const newMarket = await db.market.create({
       data: {
         isActive,
+        categoryIds,
         description,
         logoUrl,
-        categoryIds,
         title,
         slug,
       },
@@ -24,6 +24,7 @@ export async function POST(request) {
     console.log(newMarket);
     return NextResponse.json(newMarket);
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       {
         message: "Failed to create Market",

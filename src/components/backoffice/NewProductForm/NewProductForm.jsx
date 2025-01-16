@@ -139,7 +139,7 @@ const NewProductForm = ({categories, sellers}) => {
               errors={errors}
               className="w-full"
               options={categories}
-              // multiple={isMultiple}
+              multiple={isMultiple}
             />
 
             <ToggleInput
