@@ -11,12 +11,9 @@ import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import QuillEditor from "components/Forminput/QuillEditor.jsx";
-export const dynamic = "force-dynamic";
+import { useRouter } from "next/navigation";
 
-
-// Dynamically import ReactQuill
-
-const NewTrainingForm = ({categories}) => {
+const NewTrainingForm = ({ categories }) => {
   const [imageUrl, setImageUrl] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,9 +29,12 @@ const NewTrainingForm = ({categories}) => {
   });
 
   const isActive = watch("isActive");
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/community");
+  }
 
   const onSubmit = async (data) => {
-    
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.imageUrl = imageUrl;
@@ -46,7 +46,8 @@ const NewTrainingForm = ({categories}) => {
       "/api/trainings",
       data,
       "Training",
-      reset
+      reset,
+      redirect()
     );
     setImageUrl("");
     setContent("");
