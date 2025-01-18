@@ -16,18 +16,10 @@ import generateUserCode from "lib/generateUserCode";
 import { useRouter } from "next/navigation";
 
 const NewProductForm = ({categories, sellers}) => {
-  const [imageUrl, setImageUrl] = useState("");
-  const [multiple, stMultiple] = useState(false);
-
-  const handleToggleChange = (state) => {
-    stMultiple(state);
-  };
+  const [imageUrl, setImageUrl] = useState("")
 
   // tags
   const [tags, setTags] = useState([]);
-
-
-
   // loading
   const [loading, setLoading] = useState(false);
 
@@ -56,12 +48,17 @@ const NewProductForm = ({categories, sellers}) => {
   }
 
   async function onSubmit(data) {
-    setLoading(true);
+    
+    // const categoryId = Array.isArray(data.categoryId)
+    // ? data.categoryId
+    // : [data.categoryId];
+    
     const slug = generateSlug(data?.title);
     const productCode = generateUserCode("LLP", data.title);
     data.tags = tags;
     data.slug = slug;
     data.qty = 1;
+    // data.categoryId = categoryId;
     data.productCode = productCode;
     data.imageUrl = imageUrl;
     console.log(data);
@@ -134,12 +131,12 @@ const NewProductForm = ({categories, sellers}) => {
           <div>
             <SelectInput
               label="Select Category"
-              name="categoryIds"
+              name="categoryId"
               register={register}
               errors={errors}
               className="w-full"
               options={categories}
-              multiple={isMultiple}
+              // multiple={isMultiple}
             />
 
             <ToggleInput

@@ -26,6 +26,7 @@ export async function POST(request) {
     console.log("", newTrainings);
     return NextResponse.json(newTrainings);
   } catch (error) {
+    console.log(error)
     return NextResponse.json(
       {
         message: "Failed to create Training",
