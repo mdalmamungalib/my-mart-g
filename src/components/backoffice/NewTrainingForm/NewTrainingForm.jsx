@@ -43,7 +43,7 @@ const NewTrainingForm = ({categories}) => {
 
     makePostRequest(
       setLoading,
-      "api/trainings",
+      "/api/trainings",
       data,
       "Training",
       reset

@@ -43,7 +43,7 @@ const NewSellerForm = ({ user }) => {
     console.log(data);
     makePostRequest(
       setLoading,
-      "api/sellers",
+      "/api/sellers",
       data,
       "Sellers",
       reset,

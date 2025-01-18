@@ -34,15 +34,15 @@ model Banner {
 }
 
 model Category {
-  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  slug        String     @unique
+  slug        String  @unique
   imageUrl    String?
   description String?
   isActive    Boolean
-  
-  // products    Product[]
-  trainings    Training[]
+
+  trainings Training[] // Example: Categories can have many trainings
+  products  Product[] // A Category can have many Products
 
   marketIds String[] @db.ObjectId
   markets   Market[] @relation(fields: [marketIds], references: [id])
@@ -87,10 +87,10 @@ model Product {
   title           String
   wholesalePrice  Float
 
-  // category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
   categoryId String   @db.ObjectId
 
-  user   User   @relation(fields: [sellerId], references: [id])
+  user     User   @relation(fields: [sellerId], references: [id])
   sellerId String @unique @db.ObjectId
 
   createdAt       DateTime       @default(now())

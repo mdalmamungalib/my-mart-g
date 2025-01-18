@@ -11,10 +11,11 @@ import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import TextareaInput from "components/Forminput/TextareaInput.jsx";
 
 import SelectInput from "components/Forminput/SelectInput.jsx";
+import { useRouter } from "next/navigation";
 
-const NewMarketForm = ({categories}) => {
+const NewMarketForm = ({ categories }) => {
   const [loading, setLoading] = useState(false);
-  const [logoUrl, setLogoUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const {
     register,
@@ -27,24 +28,29 @@ const NewMarketForm = ({categories}) => {
   });
   const isActive = watch("isActive");
   const isMultiple = watch("isMultiple");
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/markets");
+  }
   async function onSubmit(data) {
-    
     const categoryIds = Array.isArray(data.categoryIds)
-    ? data.categoryIds
-    : [data.categoryIds];
+      ? data.categoryIds
+      : [data.categoryIds];
     const slug = generateSlug(data.title);
     data.slug = slug;
-    data.logoUrl = logoUrl;
+    data.logoUrl = imageUrl;
     data.categoryIds = categoryIds;
     console.log(data);
 
     makePostRequest(
       setLoading,
-      "api/markets",
+      "/api/markets",
       data,
       "Markets",
-      reset
+      reset,
+      redirect()
     );
+    setImageUrl("");
   }
   return (
     <div>
@@ -84,8 +90,8 @@ const NewMarketForm = ({categories}) => {
             </div>
           </div>
           <ImageInput
-            imageUrl={logoUrl}
-            setImageUrl={setLogoUrl}
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
             endpoint="marketLogoUpload"
             label={"Market Logo"}
           />

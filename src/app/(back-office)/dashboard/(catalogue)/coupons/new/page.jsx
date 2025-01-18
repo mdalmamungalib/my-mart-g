@@ -44,7 +44,7 @@ const NewCoupons = () => {
 
     makePostRequest(
       setLoading,
-      "api/coupons",
+      "/api/coupons",
       data,
       "Coupon",
       reset,

@@ -2,33 +2,13 @@ import db from "lib/db";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  // userID:sellerId
-  // isActive,
-  //     description,
-  //     tags,
-  //     imageUrl,
-  //     sellersIds,
-  //     categoryIds,
-  //     salePrice,
-  //     productPrice,
-  //     barcode,
-  //     sku,
-  //     title,
-  //     slug,
-  //     productCode,
-  //     minimumWholeQty,
-  //     wholesalePrice,
-  //     isMultiple,
-  //     isWholesale,
-  //     productStock,
-  //     qty,
   try {
     const {
       sellerId,
-      isActive,
-      description,
-      tags,
-      imageUrl,
+      isActive = true,
+      description = "",
+      tags = [],
+      imageUrl = "",
       categoryId,
       salePrice,
       productPrice,
@@ -37,29 +17,52 @@ export async function POST(request) {
       title,
       slug,
       productCode,
-      minimumWholeQty,
-      wholesalePrice,
-      isMultiple,
-      isWholesale,
+      minimumWholeQty = 0,
+      wholesalePrice = 0,
+      isMultiple = false,
+      isWholesale = false,
       productStock,
       qty,
     } = await request.json();
 
+    // Validate required fields
+    if (!sellerId || !title || !slug || !categoryId) {
+      return NextResponse.json(
+        { message: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // Validate numeric fields
+    const salePriceParsed = parseFloat(salePrice);
+    const productPriceParsed = parseFloat(productPrice);
+    const productStockParsed = parseInt(productStock);
+    const qtyParsed = parseInt(qty);
+
+    if (
+      isNaN(salePriceParsed) ||
+      isNaN(productPriceParsed) ||
+      isNaN(productStockParsed) ||
+      isNaN(qtyParsed)
+    ) {
+      return NextResponse.json(
+        { message: "Invalid numeric values" },
+        { status: 400 }
+      );
+    }
+
+    // Check for existing product
     const existingProduct = await db.product.findUnique({
-      where: {
-        slug
-      },
+      where: { slug },
     });
     if (existingProduct) {
       return NextResponse.json(
-        {
-          data: null,
-          message: "The Product already exists",
-        },
+        { message: "The Product already exists" },
         { status: 409 }
       );
     }
 
+    // Create new product
     const newProduct = await db.product.create({
       data: {
         isActive,
@@ -70,30 +73,26 @@ export async function POST(request) {
         tags,
         imageUrl,
         categoryId,
-        salePrice: parseFloat(salePrice),
-        productPrice: parseFloat(productPrice),
+        salePrice: salePriceParsed,
+        productPrice: productPriceParsed,
         barcode,
         sku,
         title,
         slug,
         productCode,
-        minimumWholeQty: parseInt(minimumWholeQty),
-        wholesalePrice: parseFloat(wholesalePrice),
-
-        productStock: parseInt(productStock),
-        qty: parseInt(qty),
+        minimumWholeQty: parseInt(minimumWholeQty) || 0,
+        wholesalePrice: parseFloat(wholesalePrice) || 0,
+        productStock: productStockParsed,
+        qty: qtyParsed,
       },
     });
 
     console.log(newProduct);
     return NextResponse.json(newProduct);
   } catch (error) {
-    console.log(error)
+    console.error("Error creating product:", error.message);
     return NextResponse.json(
-      {
-        message: "Failed to create Product",
-        error,
-      },
+      { message: "Failed to create Product. Please try again later." },
       { status: 500 }
     );
   }
@@ -101,18 +100,21 @@ export async function POST(request) {
 
 export async function GET(request) {
   try {
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "10");
+
     const products = await db.product.findMany({
-      orderBy: {
-        createdAt: "desc",
-      },
+      skip: (page - 1) * limit,
+      take: limit,
+      orderBy: { createdAt: "desc" },
     });
+
     return NextResponse.json(products);
   } catch (error) {
+    console.error("Error fetching products:", error.message);
     return NextResponse.json(
-      {
-        message: "Failed to get Product",
-        error,
-      },
+      { message: "Failed to get Product. Please try again later." },
       { status: 500 }
     );
   }

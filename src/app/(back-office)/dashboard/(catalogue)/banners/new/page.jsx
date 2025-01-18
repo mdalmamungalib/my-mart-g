@@ -35,7 +35,7 @@ const NewBanner = () => {
 
     makePostRequest(
       setLoading,
-      "api/banners",
+      "/api/banners",
       data,
       "Banner",
       reset,

@@ -65,7 +65,7 @@ const NewProductForm = ({categories, sellers}) => {
 
     makePostRequest(
       setLoading,
-      "api/products",
+      "/api/products",
       data,
       "Product",
       reset,

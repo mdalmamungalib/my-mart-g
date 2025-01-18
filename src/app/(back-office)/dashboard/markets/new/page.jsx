@@ -1,9 +1,8 @@
 import NewMarketForm from "components/backoffice/NewMarketForm/NewMarketForm";
-import NewProductForm from "components/backoffice/NewProductForm/NewProductForm";
 import { getData } from "lib/getData";
 import React from "react";
 
-const NewProduct = async () => {
+const NewMarket = async () => {
   // Categories and Sellers
   const categoriesData = await getData("categories");
 
@@ -19,4 +18,4 @@ const NewProduct = async () => {
   );
 };
 
-export default NewProduct;
+export default NewMarket;

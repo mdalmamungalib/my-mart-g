@@ -58,7 +58,7 @@ const NewCategory = () => {
 
     makePostRequest(
       setLoading,
-      "api/categories",
+      "/api/categories",
       data,
       "Category",
       reset,

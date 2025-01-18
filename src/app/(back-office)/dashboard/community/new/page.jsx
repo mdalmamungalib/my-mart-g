@@ -1,4 +1,3 @@
-import NewProductForm from "components/backoffice/NewProductForm/NewProductForm";
 import NewTrainingForm from "components/backoffice/NewTrainingForm/NewTrainingForm";
 import { getData } from "lib/getData";
 import React from "react";
