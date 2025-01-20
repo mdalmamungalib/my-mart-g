@@ -25,24 +25,25 @@ const Navbar = ({ setShowSideBar, showSidebar }) => {
   return (
     <div className="flex items-center justify-between bg-slate-100 dark:bg-[#122136] h-16 z-50 px-8 py-8 fixed w-full text-lime-600">
       {/* icon */}
-      <button onClick={() => setShowSideBar(!showSidebar)}>
+      <button className="" onClick={() => setShowSideBar(!showSidebar)}>
         <AlignJustify />
       </button>
+      
       {/* 3 icon */}
       <div className="flex space-x-3 sm:pr-56">
-        <ThemeSwitcherBtn />
-
         <DropdownMenu>
+          <ThemeSwitcherBtn />
+
           <DropdownMenuTrigger>
             <button
               type="button"
-              className="relative inline-flex items-center p-3 text-sm font-medium text-center text-white bg-transparent "
+              className="relative flex items-center p-2 space-x-1 text-xl transition-transform duration-200 transform border-none rounded-md w-fit active:scale-110 text-lime-600 hover:scale-110 dark:hover:text-lime-400"
             >
-              <Bell className="text-lime-600" />
-              <span className="sr-only">Notifications</span>
-              <div className="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 rounded-full -top-0 end-6 ">
+              <div className="absolute top-0 left-0 flex items-center justify-center w-6 h-6 text-xs font-bold text-white -translate-y-1 bg-red-500 rounded-full -translate-x-0 ">
                 20
               </div>
+              <Bell />
+              <span className="sr-only">Notifications</span>
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="pl-4 pr-10">

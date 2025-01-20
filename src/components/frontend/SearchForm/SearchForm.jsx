@@ -16,7 +16,7 @@ const SearchForm = () => {
           type="text"
           id="table-search"
           className="w-full py-2 pl-10 pr-4 text-sm text-gray-900 border border-gray-300 rounded-lg focus:ring-lime-500 focus:border-lime-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400 dark:focus:ring-lime-500 dark:focus:border-lime-500"
-          placeholder="Search for items..."
+          placeholder="Search Products..."
         />
       </div>
 
