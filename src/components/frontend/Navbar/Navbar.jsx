@@ -3,8 +3,9 @@ import SearchForm from "../SearchForm/SearchForm";
 import Logo from "app/Logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { HelpCircle, ShoppingCart, User } from "lucide-react";
+import {  ShoppingCart, User } from "lucide-react";
 import ThemeSwitcherBtn from "components/ThemeSwitcherBtn/ThemeSwitcherBtn";
+import HelpModal from "../HelpModal/HelpModal";
 
 const Navbar = () => {
   return (
@@ -43,17 +44,12 @@ const Navbar = () => {
           </Link>
 
           {/* Help */}
-          <button
-            className="flex items-center space-x-1 text-xl transition-transform transform text-lime-600 hover:scale-110 dark:hover:text-lime-400"
-            aria-label="Help"
-          >
-            <HelpCircle />
-            <span>Help</span>
-          </button>
+          
+          <HelpModal/>
 
           {/* Cart */}
           <Link
-            href="/cart"
+            href="/dashboard"
             className="relative flex items-center text-xl transition-transform transform text-lime-600 hover:scale-110 dark:hover:text-lime-400"
             aria-label="Cart"
           >

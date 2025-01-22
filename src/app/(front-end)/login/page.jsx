@@ -1,6 +1,7 @@
-import RegisterForm from "components/frontend/RegisterForm/RegisterForm";
+import LoginForm from "components/frontend/LoginForm/LoginForm";
 
-export default function Register() {
+
+export default function Login() {
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -11,7 +12,7 @@ export default function Register() {
               Create a new account
             </h1>
 
-            <RegisterForm role={"USER"} />
+            <LoginForm/>
           </div>
         </div>
       </div>
