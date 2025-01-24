@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import QuillEditor from "components/Forminput/QuillEditor.jsx";
 import { useRouter } from "next/navigation";
+export const dynamic = "force-dynamic";
 
 const NewTrainingForm = ({ categories }) => {
   const [imageUrl, setImageUrl] = useState("");

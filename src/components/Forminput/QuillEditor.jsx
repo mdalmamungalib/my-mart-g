@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 // import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import dynamic from "next/dynamic";
+export const dynamic = "force-dynamic";
 
 // Dynamically import ReactQuill with SSR disabled
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });

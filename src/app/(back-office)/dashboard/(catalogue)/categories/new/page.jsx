@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import SelectInput from "components/Forminput/SelectInput.jsx";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { useRouter } from "next/navigation.js";
+export const dynamic = "force-dynamic";
 
 const NewCategory = () => {
   const [imageUrl, setImageUrl] = useState("");

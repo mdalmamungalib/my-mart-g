@@ -10,6 +10,7 @@ import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation.js";
 import ImageInput from "components/Forminput/ImageInput.jsx";
 import ArrayItemsInput from "components/Forminput/ArrayItemsInput";
+export const dynamic = "force-dynamic";
 
 const NewSellerForm = ({ user }) => {
   const [profileImageUrl, setProfileImageUrl] = useState("");

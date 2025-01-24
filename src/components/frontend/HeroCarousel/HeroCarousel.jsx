@@ -3,6 +3,7 @@ import React from "react";
 import { Carousel } from "nuka-carousel";
 import { easeCircleOut, easeElasticOut } from "d3-ease";
 import Image from "next/image";
+export const dynamic = "force-dynamic";
 
 const HeroCarousel = () => {
   const carousels = [

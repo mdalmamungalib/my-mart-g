@@ -12,6 +12,7 @@ import TextareaInput from "components/Forminput/TextareaInput.jsx";
 
 import SelectInput from "components/Forminput/SelectInput.jsx";
 import { useRouter } from "next/navigation";
+export const dynamic = "force-dynamic";
 
 const NewMarketForm = ({ categories }) => {
   const [loading, setLoading] = useState(false);

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+export const dynamic = "force-dynamic";
 
 export default function RegisterForm({ role = "USER" }) {
   const router = useRouter();

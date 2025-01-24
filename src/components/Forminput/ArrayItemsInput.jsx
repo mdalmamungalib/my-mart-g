@@ -1,11 +1,13 @@
 "use client";
 import { Cookie, Plus, X } from "lucide-react";
 import React, { useState } from "react";
+export const dynamic = "force-dynamic";
 
 const ArrayItemsInput = ({ setItems, items, itemTitle }) => {
   const [item, setItem] = useState("");
   const [showTagForm, setShowTagForm] = useState(false);
   const [error, setError] = useState("");
+  
 
   // Add item function
   function addItem() {

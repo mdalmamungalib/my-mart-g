@@ -9,11 +9,11 @@ import { generateSlug } from "lib/generateSlug.js";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import SelectInput from "components/Forminput/SelectInput.jsx";
-import { Plus, X } from "lucide-react";
 import ArrayItemsInput from "components/Forminput/ArrayItemsInput.jsx";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import generateUserCode from "lib/generateUserCode";
 import { useRouter } from "next/navigation";
+export const dynamic = "force-dynamic";
 
 const NewProductForm = ({categories, sellers}) => {
   const [imageUrl, setImageUrl] = useState("")

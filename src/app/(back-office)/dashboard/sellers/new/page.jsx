@@ -11,7 +11,7 @@ import { makePostRequest } from "lib/apiRequest.js";
 import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation.js";
 import ImageInput from "components/Forminput/ImageInput.jsx";
-import NewSellerForm from "components/backoffice/NewSellerForm/NewSellerForm";
+export const dynamic = "force-dynamic";
 
 
 

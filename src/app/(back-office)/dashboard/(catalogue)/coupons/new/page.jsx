@@ -1,14 +1,15 @@
 "use client";
-import { makePostRequest } from "../../../../../../lib/apiRequest.js";
+import { makePostRequest } from "lib/apiRequest.js";
 import FormHeader from "components/backoffice/FormHeader/FormHeader.jsx";
 import SubmitButton from "components/Forminput/SubmitButton.jsx";
 import TextInput from "components/Forminput/TextInput.jsx";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import generateCouponCode from "../../../../../../lib/generateCouponCode.js";
+import generateCouponCode from "lib/generateCouponCode.js";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { generateisoFormattedDate } from "lib/generateisoFormattedDate.js";
 import { useRouter } from "next/navigation.js";
+export const dynamic = "force-dynamic";
 
 const NewCoupons = () => {
   const [loading, setLoading] = useState(false);

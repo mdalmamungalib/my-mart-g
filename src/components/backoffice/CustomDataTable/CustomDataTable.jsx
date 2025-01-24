@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import data from "../../../../data.json";
+export const dynamic = "force-dynamic";
 
 const CustomDataTable = () => {
   const PAGE_SIZE = 10;

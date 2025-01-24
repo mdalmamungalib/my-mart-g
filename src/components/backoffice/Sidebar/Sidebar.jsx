@@ -26,6 +26,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+export const dynamic = "force-dynamic";
 
 const Sidebar = ({ showSidebar }) => {
   const pathname = usePathname();

@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "react-hot-toast";

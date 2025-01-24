@@ -9,6 +9,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { useRouter } from "next/navigation.js";
+export const dynamic = "force-dynamic";
 
 const NewBanner = () => {
   const [imageUrl, setImageUrl] = useState("");

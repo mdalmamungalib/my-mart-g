@@ -7,8 +7,9 @@ import TextInput from "components/Forminput/TextInput.jsx";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
-import { makePostRequest } from "../../../../../lib/apiRequest.js";
-import generateUserCode from "../../../../../lib/generateUserCode.js";
+import { makePostRequest } from "lib/apiRequest.js";
+import generateUserCode from "lib/generateUserCode.js";
+export const dynamic = "force-dynamic";
 
 const NewStaff = () => {
   const [loading, setLoading] = useState(false);

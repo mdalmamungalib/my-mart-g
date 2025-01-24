@@ -2,6 +2,7 @@
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import React, { useEffect, useState } from "react";
+export const dynamic = "force-dynamic";
 
 const ThemeSwitcherBtn = () => {
   const [mounted, setMounted] = useState(false);
