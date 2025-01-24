@@ -1,6 +1,7 @@
 import React from 'react';
 import SmallCards from '../SmallCards/SmallCards';
 import { Loader2, PackageCheck, RefreshCcw, ShoppingCart } from 'lucide-react';
+export const dynamic = "force-dynamic";
 
 const SmallCard = () => {
     const orderStatus = [

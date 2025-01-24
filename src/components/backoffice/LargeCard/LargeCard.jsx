@@ -1,6 +1,6 @@
 import React from "react";
 import LargeCards from "../LargeCards/LargeCards";
-
+export const dynamic = "force-dynamic";
 const LargeCard = () => {
   const orderStatus = [
     {

@@ -1,6 +1,7 @@
 import NewProductForm from "components/backoffice/NewProductForm/NewProductForm";
 import { getData } from "lib/getData";
 import React from "react";
+export const dynamic = "force-dynamic";
 
 const NewProduct = async () => {
   // Categories and Sellers

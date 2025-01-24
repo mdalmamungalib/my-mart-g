@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import HeroCarousel from "../HeroCarousel/HeroCarousel";
+export const dynamic = "force-dynamic";
 
 
 const Hero = () => {
