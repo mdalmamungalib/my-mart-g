@@ -1,8 +1,14 @@
-
 "use client";
 
 import { Button, Modal } from "flowbite-react";
-import { HelpCircle } from "lucide-react";
+import {
+  CornerDownLeft,
+  Headset,
+  HelpCircle,
+  Truck,
+  User,
+} from "lucide-react";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function HelpModal() {
@@ -10,36 +16,94 @@ export default function HelpModal() {
 
   return (
     <>
-      {/* <Button onClick={() => setOpenModal(true)}>Toggle modal</Button> */}
+      {/* Help Button */}
       <button
-      onClick={() => setOpenModal(true)}
-            className="flex items-center space-x-1 text-xl transition-transform transform text-lime-600 hover:scale-110 dark:hover:text-lime-400"
-            aria-label="Help"
-          >
-            <HelpCircle />
-            <span>Help</span>
-          </button>
-      <Modal show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header>Terms of Service</Modal.Header>
+        onClick={() => setOpenModal(true)}
+        className="flex items-center space-x-2 text-lg font-medium transition-transform transform text-lime-600 hover:text-lime-500 hover:scale-110 dark:hover:text-lime-400"
+        aria-label="Help"
+      >
+        <HelpCircle className="w-6 h-6" />
+        <span>Help</span>
+      </button>
+
+      {/* Modal */}
+      <Modal
+        show={openModal}
+        onClose={() => setOpenModal(false)}
+        size="lg"
+        className="text-gray-800 dark:text-gray-200"
+      >
+        <Modal.Header className="text-xl font-semibold">
+          Need Help? Get in Touch with Experts
+        </Modal.Header>
         <Modal.Body>
-          <div className="space-y-6">
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              With less than a month to go before the European Union enacts new consumer privacy laws for its citizens,
-              companies around the world are updating their terms of service agreements to comply.
-            </p>
-            <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant
-              to ensure a common set of data rights in the European Union. It requires organizations to notify users as
-              soon as possible of high-risk data breaches that could personally affect them.
-            </p>
+          <div className="grid grid-cols-2 gap-6">
+            {/* Contact Support */}
+            <Link
+              href="tel:01307455117"
+              className="flex items-center space-x-4"
+            >
+              <Headset className="w-8 h-8 text-blue-500" />
+              <div>
+                <h4 className="text-lg font-medium">
+                  Call Support
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  01307455117
+                </p>
+              </div>
+            </Link>
+
+            {/* Track Orders */}
+            <Link
+              href="/contact"
+              className="flex items-center space-x-4"
+            >
+              <Truck className="w-8 h-8 text-green-500" />
+              <div>
+                <h4 className="text-lg font-medium">
+                  Track Orders
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Stay updated with your delivery
+                </p>
+              </div>
+            </Link>
+
+            {/* Returns & Refunds */}
+            <Link
+              href="/contact"
+              className="flex items-center space-x-4"
+            >
+              <CornerDownLeft className="w-8 h-8 text-orange-500" />
+              <div>
+                <h4 className="text-lg font-medium">
+                  Returns & Refunds
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Easy return policies
+                </p>
+              </div>
+            </Link>
+
+            {/* Payment & Accounts */}
+            <Link
+              href="/contact"
+              className="flex items-center space-x-4"
+            >
+              <User className="w-8 h-8 text-purple-500" />
+              <div>
+                <h4 className="text-lg font-medium">
+                  Payment & My Account
+                </h4>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Manage your account and payments
+                </p>
+              </div>
+            </Link>
           </div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => setOpenModal(false)}>I accept</Button>
-          <Button color="gray" onClick={() => setOpenModal(false)}>
-            Decline
-          </Button>
-        </Modal.Footer>
+       
       </Modal>
     </>
   );

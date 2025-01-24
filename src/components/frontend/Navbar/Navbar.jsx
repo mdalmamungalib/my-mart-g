@@ -49,7 +49,7 @@ const Navbar = () => {
 
           {/* Cart */}
           <Link
-            href="/dashboard"
+            href="/cart"
             className="relative flex items-center text-xl transition-transform transform text-lime-600 hover:scale-110 dark:hover:text-lime-400"
             aria-label="Cart"
           >
