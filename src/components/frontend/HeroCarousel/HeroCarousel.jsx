@@ -8,7 +8,6 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./HeroCarousel.css";
-import Image from "next/image";
 
 const HeroCarousel = () => {
   const prevRef = useRef(null);
@@ -67,6 +66,7 @@ const HeroCarousel = () => {
           disableOnInteraction: false, // Continue autoplay after user interaction
         }}
         onBeforeInit={(swiper) => {
+          // This ensures that the refs are properly updated before initializing Swiper
           swiper.params.navigation.prevEl = prevRef.current;
           swiper.params.navigation.nextEl = nextRef.current;
           swiper.navigation.update();
@@ -75,8 +75,6 @@ const HeroCarousel = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <img
-              
-              objectFit="cover"
               src={slide.image}
               alt={slide.alt}
               className="w-full h-[400px] object-cover rounded-lg"
