@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+"use client";
+
+import React, { useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -10,6 +12,8 @@ import "./HeroCarousel.css";
 const HeroCarousel = () => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
+  const [swiperInstance, setSwiperInstance] = useState(null); // To store the swiper instance
 
   const slides = [
     {
@@ -44,20 +48,14 @@ const HeroCarousel = () => {
     },
   ];
 
-  useEffect(() => {
-    // Ensuring the navigation buttons are properly initialized after the component mounts
-    if (prevRef.current && nextRef.current) {
-      const swiperInstance = document.querySelector(".swiper-container").swiper;
-      swiperInstance.params.navigation.prevEl = prevRef.current;
-      swiperInstance.params.navigation.nextEl = nextRef.current;
-      swiperInstance.navigation.update();
-    }
-  }, []);
-
   return (
     <div className="relative w-full h-[400px]">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
         pagination={{ clickable: true }}
         loop={true}
         spaceBetween={30}
@@ -68,6 +66,9 @@ const HeroCarousel = () => {
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
+        }}
+        onSwiper={(swiper) => {
+          setSwiperInstance(swiper); // Store the swiper instance
         }}
       >
         {slides.map((slide) => (
