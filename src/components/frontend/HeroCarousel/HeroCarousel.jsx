@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -46,14 +44,20 @@ const HeroCarousel = () => {
     },
   ];
 
+  useEffect(() => {
+    // Ensuring the navigation buttons are properly initialized after the component mounts
+    if (prevRef.current && nextRef.current) {
+      const swiperInstance = document.querySelector(".swiper-container").swiper;
+      swiperInstance.params.navigation.prevEl = prevRef.current;
+      swiperInstance.params.navigation.nextEl = nextRef.current;
+      swiperInstance.navigation.update();
+    }
+  }, []);
+
   return (
     <div className="relative w-full h-[400px]">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
-        navigation={{
-          prevEl: prevRef.current,
-          nextEl: nextRef.current,
-        }}
         pagination={{ clickable: true }}
         loop={true}
         spaceBetween={30}
@@ -62,14 +66,8 @@ const HeroCarousel = () => {
         freeMode={true}
         centeredSlides={true}
         autoplay={{
-          delay: 3000, // Slide will change every 3 seconds
-          disableOnInteraction: false, // Continue autoplay after user interaction
-        }}
-        onBeforeInit={(swiper) => {
-          // This ensures that the refs are properly updated before initializing Swiper
-          swiper.params.navigation.prevEl = prevRef.current;
-          swiper.params.navigation.nextEl = nextRef.current;
-          swiper.navigation.update();
+          delay: 3000,
+          disableOnInteraction: false,
         }}
       >
         {slides.map((slide) => (
