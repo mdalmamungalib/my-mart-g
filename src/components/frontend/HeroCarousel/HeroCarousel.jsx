@@ -8,6 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./HeroCarousel.css";
+import Image from "next/image";
 
 const HeroCarousel = () => {
   const prevRef = useRef(null);
@@ -74,6 +75,8 @@ const HeroCarousel = () => {
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <img
+              
+              objectFit="cover"
               src={slide.image}
               alt={slide.alt}
               className="w-full h-[400px] object-cover rounded-lg"
