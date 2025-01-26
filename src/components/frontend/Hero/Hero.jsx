@@ -124,7 +124,7 @@ const Hero = () => {
           ))}
         </div>
       </div>
-      <div className="w-2/3 bg-blue-600 rounded-md h-[300px]">
+      <div className="w-2/3  rounded-md h-[300px]">
         <HeroCarousel />
       </div>
     </div>

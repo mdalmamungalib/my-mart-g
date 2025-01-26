@@ -1,0 +1,8 @@
+/* Navigation Buttons */
+
+
+.swiper-pagination-bullet-active {
+  background-color: #3f6212; /* Active dot color */
+  transform: scale(1.2); /* Make active dot slightly bigger */
+  transition: transform 0.3s ease;
+}
