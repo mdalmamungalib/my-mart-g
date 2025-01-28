@@ -8,7 +8,7 @@ const page = () => {
       {/* Header */}
       <PageHeader
         heading={"Products"}
-        href={"dashboard/products/new"}
+        href={"/dashboard/products/new"}
         LinkTitle={"Add Product"}
       />
       {/* Table */}
