@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import HeroCarousel from "../HeroCarousel/HeroCarousel";
+import { HelpCircle, RotateCw, Store } from "lucide-react";
 export const dynamic = "force-dynamic";
-
 
 const Hero = () => {
   const categories = [
@@ -86,9 +86,9 @@ const Hero = () => {
   ];
 
   return (
-    <div className="flex gap-8">
+    <div className="grid grid-cols-12 gap-8 mb-6">
       {/* category */}
-      <div className="w-full overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md sm:w-1/3 dark:border-gray-700 dark:bg-gray-800 h-[400px]">
+      <div className=" overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 h-[400px] col-span-2">
         {/* Header */}
         <h2 className="px-6 py-4 text-lg font-semibold text-center border-b border-gray-200 dark:border-gray-600 bg-slate-100 dark:bg-gray-700 dark:text-white">
           Shop By Category
@@ -124,8 +124,59 @@ const Hero = () => {
           ))}
         </div>
       </div>
-      <div className="w-2/3  rounded-md h-[300px]">
+      <div className="col-span-7  rounded-md h-[300px]">
         <HeroCarousel />
+      </div>
+      <div className="col-span-3 space-y-2">
+        {/* Help Center */}
+        <div className=" bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 p-4 space-y-6 h-auto md:h-[200px]">
+          {[
+            {
+              title: "Help Center",
+              description: "Guide To Customer Care",
+              icon: (
+                <HelpCircle className="w-6 h-6 shrink-0 text-lime-600 dark:text-lime-400" />
+              ),
+              href: "/",
+            },
+            {
+              title: "Easy Return",
+              description: "Quick Refund",
+              icon: (
+                <RotateCw className="w-6 h-6 text-blue-600 shrink-0 dark:text-blue-400" />
+              ),
+              href: "/",
+            },
+            {
+              title: "Sell on My Mart",
+              description: "Million of Visitors",
+              icon: (
+                <Store className="w-6 h-6 text-purple-600 shrink-0 dark:text-purple-400" />
+              ),
+              href: "/",
+            },
+          ].map((item, index) => (
+            <Link
+              key={index}
+              href={item.href}
+              className="flex items-center space-x-4 transition-all duration-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700"
+            >
+              {item.icon}
+              <div className="flex flex-col">
+                <h2 className="text-sm font-semibold text-gray-800 uppercase dark:text-gray-200">
+                  {item.title}
+                </h2>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  {item.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="">
+          <img className="border border-gray-200 rounded-lg shadow-md dark:border-gray-700    h-auto md:h-[200px] w-full" src="https://t3.ftcdn.net/jpg/11/81/95/64/240_F_1181956487_sNhu1ZVZQZzOmDwpz978zTnycFLfnKVC.jpg" alt="" />
+        </div>
+        
       </div>
     </div>
   );
