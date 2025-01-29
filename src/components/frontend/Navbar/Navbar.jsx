@@ -3,7 +3,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import Logo from "app/Logo.svg";
 import Image from "next/image";
 import Link from "next/link";
-import {  ShoppingCart, User } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import ThemeSwitcherBtn from "components/ThemeSwitcherBtn/ThemeSwitcherBtn";
 import HelpModal from "../HelpModal/HelpModal";
 
@@ -19,15 +19,15 @@ const Navbar = () => {
         >
           <Image
             src={Logo}
-            width={100}
-            height={100}
+            width={0}
+            height={0}
             alt="Logo"
-            className="w-32"
+            className="w-32 sm:h-[180px]"
           />
         </Link>
 
         {/* Search Section */}
-        <div className="flex-grow max-w-lg mx-auto sm:max-w-none">
+        <div className="flex-grow hidden max-w-lg mx-auto sm:max-w-none sm:hidden md:block">
           <SearchForm />
         </div>
 
@@ -44,8 +44,8 @@ const Navbar = () => {
           </Link>
 
           {/* Help */}
-          
-          <HelpModal/>
+
+          <HelpModal />
 
           {/* Cart */}
           <Link
@@ -60,10 +60,12 @@ const Navbar = () => {
               20
             </div>
           </Link>
+          {/* Theme Switcher */}
+          <ThemeSwitcherBtn />
         </div>
-
-        {/* Theme Switcher */}
-        <ThemeSwitcherBtn />
+      </div>
+      <div className="max-w-full p-5 mx-auto sm:block md:hidden mt-[-44px] max-[401px]:-mt-[-5px]">
+        <SearchForm />
       </div>
     </nav>
   );

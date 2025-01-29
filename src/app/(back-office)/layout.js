@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import localFont from "next/font/local";
 import "../../../styles/main.scss";
 import Sidebar from "components/backoffice/Sidebar/Sidebar";
@@ -17,25 +17,27 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-
-
 export default function RootLayout({ children }) {
   const [showSidebar, setShowSideBar] = useState(false);
   return (
     <div className="flex">
       {/* Sidebar */}
-      <Sidebar showSidebar={showSidebar}/>
+      <Sidebar showSidebar={showSidebar} />
 
       {/* Content Area */}
       <div className="w-full ml-0 lg:ml-60">
         {/* Navbar */}
         <div>
-          <Navbar showSidebar={showSidebar} setShowSideBar={setShowSideBar}/>
+          <Navbar
+            showSidebar={showSidebar}
+            setShowSideBar={setShowSideBar}
+          />
         </div>
         {/* Main Content */}
         <main
           className="p-8 bg-slate-200 dark:bg-[#19192B] dark:text-teal-50 
-        text-slate-800 min-h-screen pt-20"
+        text-slate-800 min-h-screen
+         pt-20 px-8 lg:px-0"
         >
           {children}
         </main>
