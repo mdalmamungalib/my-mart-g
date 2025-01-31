@@ -1,28 +1,26 @@
 "use client";
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import HeroCarousel from "../HeroCarousel/HeroCarousel";
-import { HelpCircle, RotateCw, Store } from "lucide-react";
 import HeroSideToCards from "../Pages/HeroSideToCards";
 import HeroCategoryCard from "../Pages/HeroCategoryCard";
+
 export const dynamic = "force-dynamic";
 
 const Hero = () => {
   return (
-    <div className="grid grid-cols-12 gap-8 mb-6">
-      {/* Category */}
-      <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 h-[400px] sm:col-span-2 hidden sm:block md:hidden">
+    <div className="grid grid-cols-12 gap-8 mt-3 mb-6 sm:mt-0">
+      {/* Category (Hidden on small screens, shown on lg screens) */}
+      <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 lg:max-h-[400px] lg:col-span-3 md:col-span-4 md:max-h-[265px] sm:col-span-4">
         <HeroCategoryCard />
       </div>
-      
-      {/* Hero Carousel */}
-      <div className="col-span-full sm:col-span-8  rounded-md h-[300px] mt-3 sm:mt-0">
+
+      {/* Hero Carousel (Full width on small, lg:col-span-8 on large) */}
+      <div className="sm:col-span-8 lg:col-span-6 rounded-md max-h-[400px] md:col-span-8">
         <HeroCarousel />
       </div>
 
-      {/* Help Center */}
-      <div className="col-span-2 space-y-2 overflow-hidden sm:block md:col-span-3">
+      {/* Help Center (Full width on small, sm:col-span-2 on larger screens) */}
+      <div className="lg:col-span-3 overflow-hidden max-h-[400px] lg:block hidden">
         <HeroSideToCards />
       </div>
     </div>

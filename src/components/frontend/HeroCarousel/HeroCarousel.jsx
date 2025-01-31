@@ -79,7 +79,7 @@ const HeroCarousel = () => {
               height={500}
               src={slide.image}
               alt={slide.alt}
-              className="w-full h-auto max-h-[400px] sm:max-h-[300px] md:max-h-[350px] lg:max-h-[400px] object-cover rounded-lg"
+              className="w-full h-auto max-h-[400px]  object-cover rounded-lg "
               loading="lazy"
             />
           </SwiperSlide>

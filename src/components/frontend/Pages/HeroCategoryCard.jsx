@@ -88,7 +88,7 @@ const HeroCategoryCard = () => {
       </h2>
 
       {/* Scrollable Container */}
-      <div className="h-[350px] overflow-y-auto space-y-4 px-4 py-6">
+      <div className="lg:max-h-[338px] md:max-h-[200px] overflow-y-auto space-y-4 px-4 py-6">
         {categories.map((category) => (
           <Link
             key={category.id}

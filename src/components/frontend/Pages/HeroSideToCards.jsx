@@ -5,7 +5,7 @@ import React from "react";
 
 const HeroSideToCards = () => {
   return (
-    <>
+    <div className="space-y-2 ">
       {/* Container for the cards */}
       <div className="bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 p-4 space-y-6 h-auto md:h-[200px]">
         {/* Mapping over the items */}
@@ -64,7 +64,7 @@ const HeroSideToCards = () => {
           style={{ objectFit: "cover" }}
         />
       </div>
-    </>
+    </div>
   );
 };
 
