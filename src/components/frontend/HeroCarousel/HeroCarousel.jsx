@@ -50,7 +50,7 @@ const HeroCarousel = () => {
   ];
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full group">
       <Swiper
         modules={[Navigation, Pagination, Autoplay]}
         navigation={{
@@ -89,15 +89,15 @@ const HeroCarousel = () => {
       {/* Custom Navigation Buttons */}
       <button
         ref={prevRef}
-        className="absolute z-10 p-3 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md custom-prev left-2 top-1/2 hover:scale-110 hover:shadow-lg opacity-45 hover:bg-lime-450 hover:text-gray-900"
+        className="absolute z-10 p-3 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-0 custom-prev left-4 sm:left-2 top-1/2 group-hover:opacity-45 hover:scale-110 hover:shadow-lg hover:bg-lime-500 hover:text-gray-900"
       >
-        <ChevronLeft />
+        <ChevronLeft size={28} />
       </button>
       <button
         ref={nextRef}
-        className="absolute z-10 p-3 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-45 custom-next right-2 top-1/2 hover:scale-110 hover:shadow-lg hover:bg-lime-450 hover:text-gray-900"
+        className="absolute z-10 p-3 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-0 custom-next right-4 sm:right-2 top-1/2 group-hover:opacity-45 hover:scale-110 hover:shadow-lg hover:bg-lime-500 hover:text-gray-900"
       >
-        <ChevronRight />
+        <ChevronRight size={28} />
       </button>
     </div>
   );

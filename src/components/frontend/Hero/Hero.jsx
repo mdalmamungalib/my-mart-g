@@ -10,12 +10,12 @@ const Hero = () => {
   return (
     <div className="grid grid-cols-12 gap-8 mt-3 mb-6 sm:mt-0">
       {/* Category (Hidden on small screens, shown on lg screens) */}
-      <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 lg:max-h-[400px] lg:col-span-3 md:col-span-4 md:max-h-[265px] sm:col-span-4">
+      <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 lg:max-h-[400px] lg:col-span-3 md:col-span-4 md:max-h-[265px] sm:col-span-4 col-span-4">
         <HeroCategoryCard />
       </div>
 
       {/* Hero Carousel (Full width on small, lg:col-span-8 on large) */}
-      <div className="sm:col-span-8 lg:col-span-6 rounded-md max-h-[400px] md:col-span-8">
+      <div className="sm:col-span-8 lg:col-span-6 rounded-md max-h-[400px] md:col-span-8 col-span-8">
         <HeroCarousel />
       </div>
 

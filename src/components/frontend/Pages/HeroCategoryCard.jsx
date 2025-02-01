@@ -83,7 +83,7 @@ const HeroCategoryCard = () => {
   return (
     <>
       {/* Header */}
-      <h2 className="px-6 py-4 text-lg font-semibold text-center border-b border-gray-200 dark:border-gray-600 bg-slate-100 dark:bg-gray-700 dark:text-white">
+      <h2 className="px-6 py-4 text-lg font-semibold text-center border-b border-gray-200 dark:border-gray-600 bg-slate-100 dark:bg-gray-700 dark:text-white text-[clamp(0.875rem,2vw,1rem)]">
         Shop By Category
       </h2>
 
@@ -100,11 +100,11 @@ const HeroCategoryCard = () => {
               <Image
                 height={100}
                 width={100}
-                className="object-cover border rounded-full border-lime-600 h-14 w-14"
+                className="object-cover border rounded-full border-lime-600 min-h-14 max-w-14"
                 src={category.image}
                 alt={`${category.name} image`}
               />
-              <span className="ml-4 text-gray-800 dark:text-gray-200">
+              <span className="ml-4 text-gray-800 dark:text-gray-200 text-[clamp(0.875rem,2vw,1rem)]">
                 {category.name}
               </span>
             </div>
