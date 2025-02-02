@@ -8,9 +8,9 @@ export const dynamic = "force-dynamic";
 
 const Hero = () => {
   return (
-    <div className="grid grid-cols-12 gap-8 mt-3 mb-6 sm:mt-0">
+    <div className="grid grid-cols-12 gap-3 mt-3 mb-6 sm:mt-0 ">
       {/* Category (Hidden on small screens, shown on lg screens) */}
-      <div className="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 lg:max-h-[400px] lg:col-span-3 md:col-span-4 md:max-h-[265px] sm:col-span-4 col-span-4">
+      <div className="col-span-4 lg:col-span-3 md:col-span-4 sm:col-span-4">
         <HeroCategoryCard />
       </div>
 

@@ -89,15 +89,15 @@ const HeroCarousel = () => {
       {/* Custom Navigation Buttons */}
       <button
         ref={prevRef}
-        className="absolute z-10 p-3 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-0 custom-prev left-4 sm:left-2 top-1/2 group-hover:opacity-45 hover:scale-110 hover:shadow-lg hover:bg-lime-500 hover:text-gray-900"
+        className="absolute z-10 p-1 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-0 sm:p-3 custom-prev left-4 sm:left-2 top-1/2 group-hover:opacity-45 hover:scale-110 hover:shadow-lg hover:bg-lime-500 hover:text-gray-900"
       >
-        <ChevronLeft size={28} />
+        <ChevronLeft className="sm:size-4 size-3" />
       </button>
       <button
         ref={nextRef}
-        className="absolute z-10 p-3 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-0 custom-next right-4 sm:right-2 top-1/2 group-hover:opacity-45 hover:scale-110 hover:shadow-lg hover:bg-lime-500 hover:text-gray-900"
+        className="absolute z-10 p-1 text-gray-300 transition-all duration-300 transform -translate-y-1/2 bg-gray-600 rounded-full shadow-md opacity-0 sm:p-3 custom-next right-4 sm:right-2 top-1/2 group-hover:opacity-45 hover:scale-110 hover:shadow-lg hover:bg-lime-500 hover:text-gray-900"
       >
-        <ChevronRight size={28} />
+        <ChevronRight className="sm:size-4 size-3" />
       </button>
     </div>
   );
