@@ -5,21 +5,26 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const MarketCarousel = () => {
+const CategoryCarousel = () => {
   const responsive = {
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1440 },
       items: 6,
     },
+    desktop: {
+      breakpoint: { max: 1440, min: 1024 },
+      items: 5,
+    },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 640 },
       items: 3,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 640, min: 0 },
       items: 2,
     },
   };
+
 
   const marketList = [
     {
@@ -99,43 +104,40 @@ const MarketCarousel = () => {
     },
   ];
   return (
+    
     <Carousel
-      swipeable={false}
-      draggable={false}
-      showDots={true}
       responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
+      ssr={true}
       infinite={true}
-      // autoPlay={this.props.deviceType !== "mobile" ? true : false}
       autoPlay={true}
-      autoPlaySpeed={1000}
+      autoPlaySpeed={2000}
       keyBoardControl={true}
-      customTransition="all .5"
+      customTransition="transform 500ms ease-in-out"
       transitionDuration={500}
       containerClass="carousel-container"
       removeArrowOnDeviceType={["tablet", "mobile"]}
-      // deviceType={this.props.deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="px-2"
     >
-      {marketList.map((market) => {
-        return (
-          <Link key={market.id} href="/" className="mr-2 bg-red-600 rounded-lg">
+      {marketList.map((market) => (
+        <Link key={market.id} href="/" className="block group">
+          <div className="overflow-hidden transition-transform duration-300 group-hover:scale-105 max-w-[250px]">
             <Image
               width={556}
               height={556}
-              className="object-cover w-full rounded-2xl max-h-36"
+              className="object-cover w-full rounded-xl h-44 md:h-52 lg:h-64"
               src={market.image}
-              alt="Market"
+              alt={market.name}
             />
-            <h2 className="text-center ">
+            <h2 className="py-2 text-sm font-semibold text-center text-gray-900 md:text-lg dark:text-white">
               {market.name}
             </h2>
-          </Link>
-        );
-      })}
+          </div>
+        </Link>
+      ))}
     </Carousel>
+
   );
 };
 
-export default MarketCarousel;
+export default CategoryCarousel;
