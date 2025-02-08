@@ -1,3 +1,4 @@
+import Footer from "components/frontend/Footer/Footer";
 import Navbar from "components/frontend/Navbar/Navbar";
 import React from "react";
 
@@ -15,11 +16,7 @@ const Layout = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <footer className="py-4 bg-gray-100">
-        <div className="text-sm text-center text-gray-500">
-          © {new Date().getFullYear()} My Website. All rights reserved.
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 };
