@@ -10,44 +10,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./HeroCarousel.css";
 import Image from "next/image";
 
-const HeroCarousel = () => {
+const HeroCarousel = ({ banners }) => {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
-  const [swiperInstance, setSwiperInstance] = useState(null); // To store the swiper instance
-
-  const slides = [
-    {
-      id: 1,
-      image:
-        "https://slidebazaar.com/wp-content/uploads/2021/09/exclusive-offers-for-products-jpg.webp",
-      alt: "Dabba Masala",
-    },
-    {
-      id: 2,
-      image:
-        "https://slidebazaar.com/wp-content/uploads/2021/09/product-powerpoint-template-jpg.webp",
-      alt: "Pexels Food",
-    },
-    {
-      id: 3,
-      image:
-        "https://slidebazaar.com/wp-content/uploads/2021/09/super-sale-product-template-jpg.webp",
-      alt: "Dabba Masala 2",
-    },
-    {
-      id: 4,
-      image:
-        "https://slidebazaar.com/wp-content/uploads/2021/09/product-template-1-jpg.webp",
-      alt: "Dabba Masala 3",
-    },
-    {
-      id: 5,
-      image:
-        "https://slidebazaar.com/wp-content/uploads/2021/09/product-banner-jpg.webp",
-      alt: "Dabba Masala 4",
-    },
-  ];
+  const [swiperInstance, setSwiperInstance] = useState(null);
 
   return (
     <div className="relative w-full group">
@@ -72,13 +39,13 @@ const HeroCarousel = () => {
           setSwiperInstance(swiper); // Store the swiper instance
         }}
       >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
+        {banners.map((banner) => (
+          <SwiperSlide key={banner.id}>
             <Image
               width={1000}
               height={500}
-              src={slide.image}
-              alt={slide.alt}
+              src={banner.imageUrl}
+              alt={banner.title}
               className="w-full h-auto max-h-[400px]  object-cover rounded-lg "
               loading="lazy"
             />

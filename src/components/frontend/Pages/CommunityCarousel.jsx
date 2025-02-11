@@ -85,7 +85,7 @@ const CommunityCarousel = () => {
       name: "Personal Care",
       image:
         "https://img.freepik.com/free-photo/natural-cosmetic-skincare-products_23-2148854022.jpg",
-      description: "Self-care products for a healthier you.",
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, placeat? Molestiae, maxime nostrum facilis necessitatibus doloribus, optio earum modi minus nemo non, voluptatem dolores ullam cupiditate? Dignissimos, quo quis repellat at incidunt, corporis repudiandae ipsa quisquam non ipsum temporibus atque commodi, illo facilis. Atque expedita aliquam exercitationem, sit quod ducimus totam sed alias, asperiores aliquid fugiat non dolor. Aut, adipisci.",
     },
   ];
 
@@ -106,8 +106,8 @@ const CommunityCarousel = () => {
     >
       {marketList.map((market) => (
         <div key={market.id} className="block group">
-          <div className="overflow-hidden transition-transform duration-300 group-hover:scale-105 max-w-[450px] group-hover:py-3 border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800">
-           
+         
+          <div className="overflow-hidden transition-transform duration-300 group-hover:scale-105 max-w-[450px] group-hover:py-3 border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-800 ">
             <Link href="/">
               <Image
                 width={556}
@@ -123,12 +123,9 @@ const CommunityCarousel = () => {
                 {market.name}
               </h2>
               <p className="text-sm text-gray-600 dark:text-gray-300">
-                {market.description.slice(0, 50)}<Link
-                  href="/"
-                  className="text-sm font-medium text-lime-700 hover:underline"
-                >
-                  ...
-                </Link>
+                {market.description.length > 25
+                  ? `${market.description.slice(0, 25)}...`
+                  : market.description}
               </p>
               <div className="flex justify-between mt-4">
                 <Link
