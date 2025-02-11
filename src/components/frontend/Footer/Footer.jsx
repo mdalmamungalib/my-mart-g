@@ -33,10 +33,10 @@ const Footer = ({
             {/* Social Icons */}
             <ul className="flex items-center space-x-3 mt-9">
               {[
-                { platform: "twitter", icon: "579", url: "#" },
-                { platform: "facebook", icon: "547", url: "#" },
-                { platform: "instagram", icon: "558", url: "#" },
-                { platform: "github", icon: "609", url: "#" },
+                { platform: "twitter", icon: "733579", url: "" },
+                { platform: "facebook", icon: "733547", url: "#" },
+                { platform: "instagram", icon: "733553", url: "#" },
+                { platform: "github", icon: "733553", url: "#" },
               ].map(({ platform, icon, url }) => (
                 <li key={platform}>
                   <a

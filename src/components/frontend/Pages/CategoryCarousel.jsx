@@ -121,7 +121,7 @@ const CategoryCarousel = () => {
     >
       {marketList.map((market) => (
         <Link key={market.id} href="/" className="block group">
-          <div className="overflow-hidden transition-transform duration-300 group-hover:scale-105 max-w-[250px] group-hover:py-2">
+          <div className="overflow-hidden transition-transform duration-300 group-hover:scale-105 max-w-[250px]">
             <Image
               width={556}
               height={556}

@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import "./HeroCarousel.css";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroCarousel = ({ banners }) => {
   const prevRef = useRef(null);
@@ -41,6 +42,7 @@ const HeroCarousel = ({ banners }) => {
       >
         {banners.map((banner) => (
           <SwiperSlide key={banner.id}>
+            <Link href={banner.link}>
             <Image
               width={1000}
               height={500}
@@ -49,6 +51,7 @@ const HeroCarousel = ({ banners }) => {
               className="w-full h-auto max-h-[400px]  object-cover rounded-lg "
               loading="lazy"
             />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
