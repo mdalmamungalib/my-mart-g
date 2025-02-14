@@ -9,7 +9,7 @@ import DashboardCharts from "components/backoffice/DashboardCharts/DashboardChar
 
 const page = () => {
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 ">
       {/* heading */}
       <Heading title={"Dashboard Overview"} />
       {/* large cards */}

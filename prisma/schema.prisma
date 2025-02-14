@@ -1,8 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// This is your Prisma schema file, learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
   provider = "prisma-client-js"
@@ -34,21 +30,21 @@ model Banner {
 }
 
 model Category {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
   title       String
-  slug        String  @unique
+  slug        String    @unique
   imageUrl    String?
   description String?
   isActive    Boolean
 
-  trainings Training[] // Example: Categories can have many trainings
-  products  Product[] // A Category can have many Products
+  trainings   Training[]
+  products    Product[]
 
-  marketIds String[] @db.ObjectId
-  markets   Market[] @relation(fields: [marketIds], references: [id])
+  marketIds   String[]   @db.ObjectId
+  markets     Market[]   @relation(fields: [marketIds], references: [id])
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
 }
 
 model Market {
@@ -62,8 +58,8 @@ model Market {
   categoryIds String[]   @db.ObjectId
   categories  Category[] @relation(fields: [categoryIds], references: [id])
 
-  createdAt DateTime  @default(now())
-  updatedAt DateTime? @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime? @updatedAt
 }
 
 model Product {
@@ -80,7 +76,6 @@ model Product {
   productStock    Int
   qty             Int
   salePrice       Float
-  // sellerId        String
   sku             String
   slug            String   @unique
   tags            String[]
@@ -91,12 +86,13 @@ model Product {
   categoryId String   @db.ObjectId
 
   user     User   @relation(fields: [sellerId], references: [id])
-  sellerId String @unique @db.ObjectId
+  sellerId String @db.ObjectId
+
+  SellerProfile   SellerProfile? @relation(fields: [sellerProfileId], references: [id])
+  sellerProfileId String?        @db.ObjectId
 
   createdAt       DateTime       @default(now())
   updatedAt       DateTime?      @updatedAt
-  SellerProfile   SellerProfile? @relation(fields: [sellerProfileId], references: [id])
-  sellerProfileId String?        @db.ObjectId
 }
 
 model Training {
@@ -132,6 +128,7 @@ model User {
 
   role          UserRole       @default(USER)
   sellerProfile SellerProfile?
+
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 }
@@ -150,11 +147,9 @@ model SellerProfile {
   email              String
   phone              String
   name               String
-  // role
-  products           String[]
-  // password
+  products           Product[]
+
   isActive           Boolean
-  // emailVerified
   storeSize          Float
 
   user   User   @relation(fields: [userId], references: [id])
@@ -162,5 +157,4 @@ model SellerProfile {
 
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Product   Product[]
 }

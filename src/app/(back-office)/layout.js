@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
         <main
           className="p-8 bg-slate-200 dark:bg-[#19192B] dark:text-teal-50 
         text-slate-800 min-h-screen
-         pt-20 px-8 lg:px-0"
+         pt-20 px-8 lg:px-5"
         >
           {children}
         </main>
