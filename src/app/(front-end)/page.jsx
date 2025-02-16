@@ -7,7 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const categories = await getData("categories");
+  const categories = await getData("categories") || [];
   return (
     <div className="min-h-screen space-y-5">
       <Hero />
