@@ -48,7 +48,7 @@ const HeroCarousel = ({ banners }) => {
               height={500}
               src={banner.imageUrl}
               alt={banner.title}
-              className="w-full h-auto max-h-[400px]  object-cover rounded-lg "
+              className="w-full sm:max-h-[450px] lg:max-h-[400px] md:max-h-[260px] max-h-[160px] object-cover rounded-lg "
               loading="lazy"
             />
             </Link>

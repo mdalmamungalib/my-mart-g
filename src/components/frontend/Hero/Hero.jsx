@@ -11,7 +11,7 @@ const Hero = async () => {
   const categories = await getData("categories");
   const banners = await getData("banners");
   return (
-    <div className="grid grid-cols-12 gap-3 mt-3 mb-6 sm:mt-0 ">
+    <div className="grid grid-cols-12 gap-1 mt-3 mb-6 sm:gap-3 md:gap-2 sm:mt-0 ">
       {/* Category (Hidden on small screens, shown on lg screens) */}
       <div className="col-span-4 lg:col-span-3 md:col-span-4 sm:col-span-4">
         <HeroCategoryCard categories={categories}/>
