@@ -1,13 +1,26 @@
 import BreadCrumb from "components/frontend/BreadCrumb/BreadCrumb";
-import { Minus, Plus, Share2, Tag } from "lucide-react";
+import CategoryCarousel from "components/frontend/Pages/CategoryCarousel";
+import { getData } from "lib/getData";
+import {
+  BaggageClaim,
+  Minus,
+  Plus,
+  Send,
+  Share2,
+  Tag,
+} from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
-const ProductDetailPage = ({ params: { slug } }) => {
+const ProductDetailPage = async ({ params: { slug } }) => {
+  const category = await getData(
+    "/categories/67af1276072781481fdcfae7"
+  );
   return (
     <div>
-      {/* <BreadCrumb/> */}
-      <div className="grid grid-cols-12 gap-4">
+      <BreadCrumb />
+      <div className="grid grid-cols-12 gap-4 py-6">
         <div className="col-span-3">
           <Image
             src={
@@ -44,7 +57,7 @@ const ProductDetailPage = ({ params: { slug } }) => {
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center justify-between gap-4 pt-4">
             <div className="flex items-center gap-4 ">
               <h4 className="text-2xl">USD: $49</h4>
@@ -55,23 +68,44 @@ const ProductDetailPage = ({ params: { slug } }) => {
               <span className="">Save 50% right now</span>
             </p>
           </div>
-          <div className="mt-4">
-            <div className="flex items-center gap-3 rounded-xl">
-              <button className="flex items-center gap-2 px-4 py-2 text-white transition rounded-md bg-lime-600 hover:bg-lime-700">
+          <div className="flex items-center justify-between py-4">
+            <div className="flex items-center gap-3 border border-gray-400 rounded-xl">
+              <button className="px-4 py-2 border-r border-gray-400">
                 <Minus />
               </button>
-              <p>2</p>
-              <button className="flex items-center gap-2 px-4 py-2 text-white transition rounded-md bg-lime-600 hover:bg-lime-700">
+              <p className="px-4">2</p>
+              <button className="px-4 py-2 border-l border-gray-400">
                 <Plus />
               </button>
             </div>
+            <button className="flex items-center gap-2 px-4 py-2 text-white transition rounded-md bg-lime-600 hover:bg-lime-700">
+              <BaggageClaim />
+              <span className="hidden md:block">Add to card</span>
+            </button>
           </div>
         </div>
         <div className="hidden h-auto col-span-3 overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-700 sm:block">
           <h2 className="sm:px-6 px-6 sm:py-4 py-2 font-semibold text-center border-b border-gray-200 text-[10px] sm:text-lg dark:border-gray-600 bg-slate-100 dark:bg-gray-800 dark:text-white">
-            Shop By Category
+            Delivery & Returns
           </h2>
+          <div className="p-4">
+            <div className="flex items-center gap-3 px-4 py-2 bg-orange-500 rounded-lg text-slate-50 max-w-[185px]">
+              <span>My Mart Express</span>
+              <Send />
+            </div>
+            <div className="flex items-center gap-3 py-3 border-b border-slate-400 text-slate-100" >
+              <p>Eligible for Free Delivery</p>
+              <Link href={"/"}>View Details</Link>
+            </div>
+            <h2>Chose your location</h2>
+          </div>
         </div>
+      </div>
+      <div className="p-4 overflow-hidden bg-white border border-gray-200 rounded-lg shadow-md dark:border-gray-700 dark:bg-gray-700 sm:block">
+        <h2 className="mb-4 ml-3 text-2xl font-semibold text-slate-200">
+          Similar Products
+        </h2>
+        <CategoryCarousel products={category.products || []} />
       </div>
     </div>
   );
