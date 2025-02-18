@@ -93,11 +93,57 @@ const ProductDetailPage = async ({ params: { slug } }) => {
               <span>My Mart Express</span>
               <Send />
             </div>
-            <div className="flex items-center gap-3 py-3 border-b border-slate-400 text-slate-100" >
+            <div className="flex items-center gap-3 py-3 border-b border-slate-400 text-slate-100">
               <p>Eligible for Free Delivery</p>
               <Link href={"/"}>View Details</Link>
             </div>
-            <h2>Chose your location</h2>
+            {/* form */}
+            <div>
+              <h2 className="py-2 text-xl text-slate-300">Chose your location</h2>
+
+              <div className="border-b border-gray-500">
+              <form class="max-w-sm mx-auto py-3">
+                <select
+                  id="countries"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  
+                  <option value="US" selected>United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="FR">France</option>
+                  <option value="DE">Germany</option>
+                </select>
+              </form>
+              </div>
+              <div className="border-b border-gray-500">
+              <form class="max-w-sm mx-auto py-3">
+                <select
+                  id="countries"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  
+                  <option value="US" selected>United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="FR">France</option>
+                  <option value="DE">Germany</option>
+                </select>
+              </form>
+              </div>
+              <div className="">
+              <form class="max-w-sm mx-auto py-3">
+                <select
+                  id="countries"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >
+                  
+                  <option value="US" selected>United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="FR">France</option>
+                  <option value="DE">Germany</option>
+                </select>
+              </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
