@@ -40,7 +40,7 @@ const ProductDetailPage = async ({ params: { slug } }) => {
             </button>
           </div>
 
-          <div className="gap-4 pt-4 border-b border-gray-500 ">
+          <div className="gap-4 pt-4 border-b border-gray-400 ">
             <p className="py-4 text-xl ">
               {" "}
               Lorem ipsum dolor sit amet consectetur adipisicing
@@ -101,7 +101,7 @@ const ProductDetailPage = async ({ params: { slug } }) => {
             <div>
               <h2 className="py-2 text-xl text-slate-300">Chose your location</h2>
 
-              <div className="border-b border-gray-500">
+              <div className="border-b border-gray-400">
               <form class="max-w-sm mx-auto py-3">
                 <select
                   id="countries"
@@ -115,7 +115,7 @@ const ProductDetailPage = async ({ params: { slug } }) => {
                 </select>
               </form>
               </div>
-              <div className="border-b border-gray-500">
+              <div className="border-b border-gray-400">
               <form class="max-w-sm mx-auto py-3">
                 <select
                   id="countries"
