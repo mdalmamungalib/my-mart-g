@@ -55,12 +55,19 @@ const Cart = () => {
               </div>
             </div>
             <div className="flex items-center gap-3 pt-5">
-              <form class=" mx-auto">
-              <input type="text" id="coupon" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter coupon code" required />
+              <form className="w-full max-w-sm">
+                <input
+                  type="text"
+                  id="coupon"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 w-full p-2.5 
+      dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Enter coupon code"
+                  required
+                />
               </form>
 
-              <button className="p-4 text-lg font-semibold bg-black rounded-lg text-slate-100">
-                Apply coupon
+              <button className="px-6 py-3 text-lg font-semibold text-white transition-all bg-black rounded-lg ">
+                Apply Coupon
               </button>
             </div>
           </div>
@@ -80,8 +87,7 @@ const Cart = () => {
             <span>$19 </span>
           </div>
           <p className="pb-3 font-normal border-b border-slate-400 text-slate-400">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Maiores, earum.
+            We only charge for shipping when you have over 2ka items
           </p>
           <div className="flex justify-between py-6 ">
             <span>Total </span>
