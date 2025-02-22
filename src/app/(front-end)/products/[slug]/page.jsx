@@ -1,6 +1,7 @@
 import BreadCrumb from "components/frontend/BreadCrumb/BreadCrumb";
 import CategoryCarousel from "components/frontend/Pages/CategoryCarousel";
 import DeliveryReturns from "components/frontend/Pages/DeliveryReturns";
+import { TbCurrencyTaka } from "react-icons/tb";
 import { getData } from "lib/getData";
 import {
   BaggageClaim,
@@ -20,7 +21,7 @@ const ProductDetailPage = async ({ params: { slug } }) => {
   );
 
   return (
-    <div className="container px-4 py-6 mx-auto">
+    <div className="container py-6 mx-auto">
       {/* Breadcrumb */}
       <BreadCrumb />
 
@@ -60,10 +61,15 @@ const ProductDetailPage = async ({ params: { slug } }) => {
           {/* Pricing */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
             <div className="flex items-center gap-3">
-              <h4 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                USD: $49
+              <h4 className="flex items-center text-2xl font-bold text-gray-900 dark:text-gray-100">
+                <TbCurrencyTaka />
+                49
               </h4>
-              <del className="text-sm text-gray-500">USD: $214</del>
+              <del className="flex items-center text-sm text-gray-500">
+                <span className="flex items-center">
+                  <TbCurrencyTaka className="w-4 h-4" /> 214
+                </span>
+              </del>
             </div>
             <p className="flex items-center text-sm text-gray-600 dark:text-gray-300">
               <Tag className="w-5 h-5 text-gray-400 me-2" />
