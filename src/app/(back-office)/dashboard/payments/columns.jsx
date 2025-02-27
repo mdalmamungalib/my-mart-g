@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ColumnDef } from "@tanstack/react-table";
+import { ArrowUpDown } from "lucide-react"
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button"
 import {
@@ -17,7 +18,17 @@ export const columns = [
   
   {
     accessorKey: "title",
-    header: "Title",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Title
+          <ArrowUpDown className="w-4 h-4 ml-2" />
+        </Button>
+      )
+    },
   },
   {
     accessorKey: "imageUrl",
@@ -36,10 +47,7 @@ export const columns = [
       );
     },
   },
-  {
-    accessorKey: "description",
-    header: "Description",
-  },
+  
   {
     accessorKey: "isActive",
     header: "Active",
