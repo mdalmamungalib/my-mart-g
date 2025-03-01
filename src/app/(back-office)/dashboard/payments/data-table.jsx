@@ -1,9 +1,5 @@
 "use client";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -26,9 +22,12 @@ import {
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Settings2 } from "lucide-react";
 
 export function DataTable({ columns, data }) {
   const [sorting, setSorting] = useState([]);
@@ -71,14 +70,25 @@ export function DataTable({ columns, data }) {
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
-              Columns
+            <Button
+              variant="outline"
+              size="sm"
+              className="hidden h-8 ml-auto lg:flex"
+            >
+              <Settings2 />
+              View
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="end" className="w-[150px]">
+            <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+            <DropdownMenuSeparator />
             {table
               .getAllColumns()
-              .filter((column) => column.getCanHide())
+              .filter(
+                (column) =>
+                  typeof column.accessorFn !== "undefined" &&
+                  column.getCanHide()
+              )
               .map((column) => {
                 return (
                   <DropdownMenuCheckboxItem

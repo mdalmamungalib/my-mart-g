@@ -2,10 +2,6 @@
 
 import * as React from "react";
 import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFacetedRowModel,
@@ -23,11 +19,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/registry/new-york/ui/table";
+} from "@/components/ui/table";
 
-import { DataTableToolbar } from "./data-table-toolbar";
 import { useState } from "react";
 import DataTablePagination from "./DataTablePagination";
+import DataTableToolbar from "./DataTableToolbar";
 
 export default function DataTable({ columns, data }) {
   const [rowSelection, setRowSelection] = useState({});
@@ -59,7 +55,7 @@ export default function DataTable({ columns, data }) {
 
   return (
     <div className="space-y-4">
-      {/* <DataTableToolbar table={table} /> */}
+      <DataTableToolbar table={table} />
       <div className="border rounded-md">
         <Table>
           <TableHeader>
