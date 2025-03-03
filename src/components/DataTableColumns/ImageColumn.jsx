@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
 
-const ImageColumn = ({ row, imageTitle }) => {
-  const imageUrl = row.getValue(`${imageTitle}`);
+const ImageColumn = ({ row, accessorKey }) => {
+  const imageUrl = row.getValue(`${accessorKey}`);
 
   return (
     <Image

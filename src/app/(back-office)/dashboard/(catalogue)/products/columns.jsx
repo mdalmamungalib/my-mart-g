@@ -2,9 +2,9 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 import DateColumn from "components/DataTableColumns/DateColumn";
-import ImageColumn from "components/DataTableColumns/ImageColumn";
 import SortableColumn from "components/DataTableColumns/SortableColumn";
 import ActionColumn from "components/DataTableColumns/ActionColumn";
+import ImageColumn from "components/DataTableColumns/ImageColumn";
 
 export const columns = [
   {
@@ -44,14 +44,6 @@ export const columns = [
       <ImageColumn row={row} accessorKey="imageUrl" />
     ),
   },
-  // {
-  //   accessorKey: "description",
-  //   header: "description",
-  //   cell: ({ row }) => {
-  //     const description = row.getValue("description");
-  //     return <div className="line-clamp-1">{description}</div>;
-  //   },
-  // },
 
   {
     accessorKey: "isActive",
@@ -60,12 +52,12 @@ export const columns = [
   {
     accessorKey: "createdAt",
     header: "Created Date",
-    cell: ({ row }) => <DateColumn row={row} accessorKey="createdAt" />,
+    cell: ({ row }) => (
+      <DateColumn row={row} accessorKey="createdAt" />
+    ),
   },
   {
     id: "actions",
-    cell: ({ row }) => (
-      <ActionColumn row={row} title="Category"/>
-    ),
+    cell: ({ row }) => <ActionColumn row={row} title="Coupons" />,
   },
 ];
