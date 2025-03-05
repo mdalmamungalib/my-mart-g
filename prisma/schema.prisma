@@ -88,9 +88,6 @@ model Product {
   user     User   @relation(fields: [sellerId], references: [id])
   sellerId String @db.ObjectId
 
-  SellerProfile   SellerProfile? @relation(fields: [sellerProfileId], references: [id])
-  sellerProfileId String?        @db.ObjectId
-
   createdAt       DateTime       @default(now())
   updatedAt       DateTime?      @updatedAt
 }
@@ -147,7 +144,7 @@ model SellerProfile {
   email              String
   phone              String
   name               String
-  products           Product[]
+  products           String[]
 
   isActive           Boolean
   storeSize          Float

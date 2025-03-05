@@ -10,9 +10,11 @@ import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation.js";
 import ImageInput from "components/Forminput/ImageInput.jsx";
 import ArrayItemsInput from "components/Forminput/ArrayItemsInput";
+
+
 export const dynamic = "force-dynamic";
 
-const NewSellerForm = ({ user }) => {
+const NewSellerForm = ({ user = {} }) => {
   const [profileImageUrl, setProfileImageUrl] = useState("");
   // loading
   const [loading, setLoading] = useState(false);
@@ -52,7 +54,9 @@ const NewSellerForm = ({ user }) => {
     );
   }
   return (
-    <form
+    <div className="">
+      
+      <form
       onSubmit={handleSubmit(onSubmit)}
       className="w-full max-w-5xl p-4 mx-auto mt-12 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
     >
@@ -159,6 +163,8 @@ const NewSellerForm = ({ user }) => {
         LoadingButtonTitle={"Creating Seller Please Wait..."}
       />
     </form>
+    </div>
+    
   );
 };
 
