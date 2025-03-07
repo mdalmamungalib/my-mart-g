@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { makePostRequest } from "lib/apiRequest.js";
 import generateUserCode from "lib/generateUserCode.js";
+import { useRouter } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 const NewStaff = () => {
@@ -25,6 +26,11 @@ const NewStaff = () => {
   });
 
   const isActive = watch("isActive");
+  const router = useRouter();
+  function redirect() {
+    router.push("/dashboard/staff");
+  }
+
   async function onSubmit(data) {
     /* 
           -name
@@ -39,15 +45,22 @@ const NewStaff = () => {
            */
 
     setLoading(true);
-    const code = generateUserCode("LFF",data.name);
+    const code = generateUserCode("LFF", data.name);
     data.code = code;
     console.log(data);
 
-    makePostRequest(setLoading, "api/staff", data, "Staffs", reset);
+    makePostRequest(
+      setLoading,
+      "api/staff",
+      data,
+      "Staffs",
+      reset,
+      redirect
+    );
   }
   return (
     <div>
-      <FormHeader title={"New Category"} />
+      <FormHeader title={"New Staff"} />
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-5xl p-4 mx-auto mt-12 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
