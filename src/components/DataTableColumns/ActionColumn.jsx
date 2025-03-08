@@ -10,8 +10,9 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { MoreHorizontal } from "lucide-react";
+import DeleteBtn from "components/Actions/DeleteBtn";
 
-const ActionColumn = ({ row, title }) => {
+const ActionColumn = ({ row, title, endpoint }) => {
   const isActive = row.isActive;
 
   return (
@@ -32,7 +33,9 @@ const ActionColumn = ({ row, title }) => {
             Copy the status
           </DropdownMenuItem> */}
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Delete {title}</DropdownMenuItem>
+        <DropdownMenuItem>
+          <DeleteBtn title={title} endpoint={endpoint}/>
+        </DropdownMenuItem>
         <DropdownMenuItem>Edit {title}</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
