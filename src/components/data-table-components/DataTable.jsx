@@ -31,6 +31,8 @@ export default function DataTable({ columns, data, filterKeys=["title"] }) {
   const [columnVisibility, setColumnVisibility] = useState({});
   const [columnFilters, setColumnFilters] = useState([]);
   const [sorting, setSorting] = useState([]);
+  
+  console.log("data", data.length);
 
   const table = useReactTable({
     data,

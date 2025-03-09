@@ -1,6 +1,6 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox"
+import { Checkbox } from "@/components/ui/checkbox";
 import SortableColumn from "components/DataTableColumns/SortableColumn";
 import ImageColumn from "components/DataTableColumns/ImageColumn";
 import DateColumn from "components/DataTableColumns/DateColumn";
@@ -15,7 +15,9 @@ export const columns = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+        onCheckedChange={(value) =>
+          table.toggleAllPageRowsSelected(!!value)
+        }
         aria-label="Select all"
       />
     ),
@@ -46,7 +48,7 @@ export const columns = [
     accessorKey: "link",
     header: "Banner Link",
   },
-  
+
   {
     accessorKey: "isActive",
     header: "Active",
@@ -54,12 +56,21 @@ export const columns = [
   {
     accessorKey: "createdAt",
     header: "Created Date",
-    cell: ({ row }) => <DateColumn row={row} accessorKey="createdAt"/>,
-  },
+    cell: ({ row }) => (
+      <DateColumn row={row} accessorKey="createdAt" />
+    ),
+  },                              
   {
     id: "actions",
-    cell: ({ row }) => (
-      <ActionColumn row={row} title="Banner"/>
-    ),
+    cell: ({ row }) => {
+      const banner = row.original;
+      return (
+        <ActionColumn
+          row={row}
+          title="Banner"
+          endpoint={`banners/${banner.id}`}
+        />
+      );
+    },
   },
 ];

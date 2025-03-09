@@ -1,28 +1,24 @@
 "use client";
-import React, { useState } from "react";
-// import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-export const dynamic = "force-dynamic";
+import React from "react";
+import dynamic from "next/dynamic"; 
+import "quill/dist/quill.snow.css"; 
 
-// Dynamically import ReactQuill with SSR disabled
+export const dynamicConfig = "force-dynamic";
+
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-const QuillEditor = ({
-  label,
-  className = "sm:col-span-2",
-  value,
-  onChange,
-}) => {
-  //Custom Tool Bar
+
+const QuillEditor = ({ label, className = "sm:col-span-2", value, onChange }) => {
   const modules = {
     toolbar: [
       [{ header: [1, 2, false] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [{ list: "ordered" }, { list: "bullet" }],
-      ["link", "color", "image"],
+      ["link", { color: [] }, "image"], 
       [{ "code-block": true }],
       ["clean"],
     ],
   };
+
   const formats = [
     "header",
     "bold",
@@ -38,6 +34,7 @@ const QuillEditor = ({
     "code-block",
     "color",
   ];
+
   return (
     <div className={className}>
       <label
@@ -46,16 +43,15 @@ const QuillEditor = ({
       >
         {label}
       </label>
-     
+
       <ReactQuill
-        className="text-gray-900 bg-white "
+        className="text-gray-900 bg-white"
         theme="snow"
         value={value}
         onChange={onChange}
         modules={modules}
         formats={formats}
       />
-      
     </div>
   );
 };

@@ -60,12 +60,21 @@ export const columns = [
   {
     accessorKey: "createdAt",
     header: "Created Date",
-    cell: ({ row }) => <DateColumn row={row} accessorKey="createdAt" />,
+    cell: ({ row }) => (
+      <DateColumn row={row} accessorKey="createdAt" />
+    ),
   },
   {
     id: "actions",
-    cell: ({ row }) => (
-      <ActionColumn row={row} title="Category" endpoint={`categories/${row.id}`}/>
-    ),
+    cell: ({ row }) => {
+      const category = row.original;
+      return (
+        <ActionColumn
+          row={row}
+          title="Category"
+          endpoint={`categories/${category.id}`}
+        />
+      );
+    },
   },
 ];

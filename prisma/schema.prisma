@@ -82,10 +82,10 @@ model Product {
   title           String
   wholesalePrice  Float
 
-  category   Category @relation(fields: [categoryId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   categoryId String   @db.ObjectId
 
-  user     User   @relation(fields: [sellerId], references: [id])
+  user     User   @relation(fields: [sellerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   sellerId String @db.ObjectId
 
   createdAt       DateTime       @default(now())
@@ -96,12 +96,12 @@ model Training {
   id          String  @id @default(auto()) @map("_id") @db.ObjectId
   isActive    Boolean
   content     String
-  imageUrl    String
-  description String
-  title       String
+  imageUrl    String?
+  description String?
+  title       String?
   slug        String  @unique
 
-  category   Category @relation(fields: [categoryId], references: [id])
+  category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String   @db.ObjectId
 
   createdAt DateTime @default(now())
@@ -149,7 +149,7 @@ model SellerProfile {
   isActive           Boolean
   storeSize          Float
 
-  user   User   @relation(fields: [userId], references: [id])
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   userId String @unique @db.ObjectId
 
   createdAt DateTime  @default(now())

@@ -44,7 +44,7 @@
     "react-hook-form": "^7.53.2",
     "react-hot-toast": "^2.4.1",
     "react-multi-carousel": "^2.8.5",
-    "react-quill": "^0.0.2",
+    "react-quill": "^2.0.0",
     "resolve-url-loader": "^5.0.0",
     "sass": "^1.83.4",
     "sweetalert2": "^11.6.13",

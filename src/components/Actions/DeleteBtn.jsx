@@ -9,8 +9,8 @@ export default function DeleteBtn({ endpoint, title }) {
   const [loading, setLoading] = useState(false);
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   const router = useRouter();
-  
-  console.log(endpoint)
+
+  console.log(endpoint);
   // const confirmed = confirm("Are you sure?");
   async function handleDelete() {
     setLoading(true);
@@ -23,21 +23,21 @@ export default function DeleteBtn({ endpoint, title }) {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
-      // if (result.isConfirmed) {
-      //   console.log("yes, confirmed");
-      //   const res = await fetch(`${baseUrl}/api/${endpoint}`, {
-      //     method: "DELETE",
-      //   });
-      //   console.log(res);
-      //   if (res.ok) {
-      //     router.refresh();
-      //     setLoading(false);
-      //     toast.success(`${title} deleted successfully`);
-      //   }
-      // } else {
-      //   console.log("no, not confirmed");
-      //   setLoading(false);
-      // }
+      if (result.isConfirmed) {
+        console.log("yes, confirmed");
+        const res = await fetch(`${baseUrl}/api/${endpoint}`, {
+          method: "DELETE",
+        });
+        console.log(res);
+        if (res.ok) {
+          router.refresh();
+          setLoading(false);
+          toast.success(`${title} deleted successfully`);
+        }
+      } else {
+        console.log("no, not confirmed");
+        setLoading(false);
+      }
     });
   }
   return (

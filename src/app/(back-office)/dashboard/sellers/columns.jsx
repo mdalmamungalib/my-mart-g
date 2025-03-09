@@ -21,6 +21,7 @@ export const columns = [
         aria-label="Select all"
       />
     ),
+
     cell: ({ row }) => (
       <Checkbox
         checked={row.getIsSelected()}
@@ -62,6 +63,15 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <ActionColumn row={row} title="Coupons" />,
+    cell: ({ row }) => {
+      const seller = row.original;
+      return (
+        <ActionColumn
+          row={row}
+          title="Seller"
+          endpoint={`sellers/${seller.id}`}
+        />
+      );
+    },
   },
 ];

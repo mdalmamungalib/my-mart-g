@@ -5,8 +5,9 @@ import React from "react";
 import { columns } from "./columns";
 import { getData } from "lib/getData";
 
-const page = async() => {
+const page = async () => {
   const community = await getData("trainings");
+  console.log("object", community);
   return (
     <div>
       {/* Header */}

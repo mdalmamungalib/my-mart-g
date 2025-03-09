@@ -39,21 +39,18 @@ export async function POST(request) {
 
 export async function GET(request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const page = parseInt(searchParams.get("page") || "1");
-    const limit = parseInt(searchParams.get("limit") || "10");
-
     const trainings = await db.training.findMany({
-      skip: (page - 1) * limit,
-      take: limit,
-      orderBy: { createdAt: "desc" },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
-
     return NextResponse.json(trainings);
   } catch (error) {
-    console.error("Error fetching trainings:", error.message);
     return NextResponse.json(
-      { message: "Failed to get trainings. Please try again later." },
+      {
+        message: "Failed to get trainings",
+        error,
+      },
       { status: 500 }
     );
   }
