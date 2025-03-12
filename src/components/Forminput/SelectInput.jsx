@@ -16,17 +16,17 @@ export default function SelectInput({
       >
         {label}
       </label>
-      <div className="mt-2">
+      <div className="mt-2 ">
         <select
           {...register(`${name}`)}
           id={name}
           multiple={multiple}
           name={name}
-          className="block w-full py-3 text-gray-900 border-0 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6"
+          className="block w-full py-3 text-gray-900 border-0 rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-lime-600 sm:max-w-xs sm:text-sm sm:leading-6 "
         >
           {options.map((option, i) => {
             return (
-              <option key={i} value={option.id}>
+              <option key={i} value={option.id} className="dark:text-slate-800">
                 {option.title}
               </option>
             );

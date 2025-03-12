@@ -134,7 +134,7 @@ const NewProductForm = ({categories, sellers}) => {
               name="categoryId"
               register={register}
               errors={errors}
-              className="w-full"
+              className="select-input"
               options={categories}
               // multiple={isMultiple}
             />

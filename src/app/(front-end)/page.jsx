@@ -10,11 +10,11 @@ export default async function Home() {
   const categoriesData = await getData("categories") || [];
   
   const categories = categoriesData.filter((category) => {
-    return category.products?.length > 4 && category.trainings?.length > 4;
+    return category.products?.length > 4 ;
   })
- 
   
   console.log(categories)
+ 
   
   return (
     <div className="min-h-screen space-y-5">
