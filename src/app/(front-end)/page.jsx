@@ -7,7 +7,15 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const categories = await getData("categories") || [];
+  const categoriesData = await getData("categories") || [];
+  
+  const categories = categoriesData.filter((category) => {
+    return category.products?.length > 4 && category.trainings?.length > 4;
+  })
+ 
+  
+  console.log(categories)
+  
   return (
     <div className="min-h-screen space-y-5">
       <Hero />

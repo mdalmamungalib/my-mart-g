@@ -51,8 +51,8 @@ export const columns = [
   },
 
   {
-    accessorKey: "isActive",
-    header: "Active",
+    accessorKey: "role",
+    header: "Role",
   },
   {
     accessorKey: "createdAt",

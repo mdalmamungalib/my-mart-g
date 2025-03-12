@@ -1,12 +1,14 @@
-
 import db from "lib/db";
 import { NextResponse } from "next/server";
 
 export async function GET(request, { params: { id } }) {
   try {
-    const seller = await db.sellerProfile.findUnique({
+    const seller = await db.user.findUnique({
       where: {
         id,
+      },
+      include: {
+        sellerProfile: true,
       },
     });
 
@@ -25,13 +27,16 @@ export async function GET(request, { params: { id } }) {
 
 export async function DELETE(request, { params: { id } }) {
   try {
-    const existingSeller = await db.sellerProfile.findUnique({
+    const existingSeller = await db.user.findUnique({
       where: {
         id,
       },
     });
     if (!existingSeller) {
-      return NextResponse.json({data: null, message: 'Seller not found'}, {status: 404});
+      return NextResponse.json(
+        { data: null, message: "Seller not found" },
+        { status: 404 }
+      );
     }
     const deletedSeller = await db.sellerProfile.delete({
       where: {
@@ -50,4 +55,3 @@ export async function DELETE(request, { params: { id } }) {
     );
   }
 }
-

@@ -39,10 +39,10 @@ export async function POST(request) {
         userId: sellerData.userId,
       },
     });
-    console.log("data",newSellerProfile);
+    console.log("data", newSellerProfile);
     return NextResponse.json(newSellerProfile);
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return NextResponse.json(
       {
         message: "Failed to create Seller",
@@ -53,19 +53,24 @@ export async function POST(request) {
   }
 }
 
-
 export async function GET(request) {
   try {
-    const profiles = await db.sellerProfile.findMany({
+    const seller = await db.user.findMany({
       orderBy: {
         createdAt: "desc",
       },
+      where: {
+        role: "SELLER",
+      },
+      include: {
+        sellerProfile: true,
+      },
     });
-    return NextResponse.json(profiles);
+    return NextResponse.json(seller);
   } catch (error) {
     return NextResponse.json(
       {
-        message: "Failed to get profiles",
+        message: "Failed to get seller",
         error,
       },
       { status: 500 }

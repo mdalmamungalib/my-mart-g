@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { isActive, imageUrl, description, title, slug } = await request.json();
+    const { isActive, imageUrl, description, title, slug } =
+      await request.json();
 
     // Check if category already exists
     const existingCategory = await db.category.findUnique({
