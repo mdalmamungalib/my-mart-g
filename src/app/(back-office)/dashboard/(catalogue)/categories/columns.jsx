@@ -72,6 +72,7 @@ export const columns = [
         <ActionColumn
           row={row}
           title="Category"
+          editEndpoint={`categories/update/${category.id}`}
           endpoint={`categories/${category.id}`}
         />
       );

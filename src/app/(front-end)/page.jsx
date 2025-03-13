@@ -10,7 +10,7 @@ export default async function Home() {
   const categoriesData = await getData("categories") || [];
   
   const categories = categoriesData.filter((category) => {
-    return category.products?.length > 4 ;
+    return category.products?.length > 3 ;
   })
   
   console.log(categories)
