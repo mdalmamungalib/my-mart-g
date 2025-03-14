@@ -1,7 +1,7 @@
 import React from "react";
 
 const UpdateTraining = () => {
-  return <div></div>;
+  return <div>UpdateTraining</div>;
 };
 
 export default UpdateTraining;

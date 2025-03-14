@@ -1,7 +1,7 @@
 import React from "react";
 
-const UpdateCoupons = () => {
+const UpdateCoupon = () => {
   return <div></div>;
 };
 
-export default UpdateCoupons;
+export default UpdateCoupon;

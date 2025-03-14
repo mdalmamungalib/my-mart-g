@@ -9,11 +9,12 @@ import SelectInput from "components/Forminput/SelectInput.jsx";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { useRouter } from "next/navigation.js";
 import { generateSlug } from "lib/generateSlug";
-import { makePostRequest } from "lib/apiRequest";
+import { makePostRequest, makePutRequest } from "lib/apiRequest";
 export const dynamic = "force-dynamic";
 
 const NewCategoryForm = ({ updateData = {} }) => {
   const initialImageUrl = updateData.imageUrl ?? "";
+  const id = updateData.id ?? "";
   const [imageUrl, setImageUrl] = useState(initialImageUrl);
 
   const [loading, setLoading] = useState(false);
@@ -40,16 +41,33 @@ const NewCategoryForm = ({ updateData = {} }) => {
     data.imageUrl = imageUrl;
     console.log(data);
 
-    makePostRequest(
-      setLoading,
-      "api/categories",
-      data,
-      "Category",
-      reset,
-      redirect
-    );
-    setImageUrl("");
+    if (id) {
+      data.id = id;
+      //Make put request (update)
+      makePutRequest(
+        setLoading,
+        `api/categories/${id}`,
+        data,
+        "Category",
+        reset,
+        redirect
+      );
+      console.log("update request: ", data);
+    } else {
+      //Make post request (create)
+      makePostRequest(
+        setLoading,
+        "api/categories",
+        data,
+        "Category",
+        reset,
+        redirect
+      );
+      setImageUrl("");
+    }
+    
   }
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -86,8 +104,10 @@ const NewCategoryForm = ({ updateData = {} }) => {
       </div>
       <SubmitButton
         isLoading={loading}
-        buttonTitle={"Save Category"}
-        LoadingButtonTitle={"Creating Category Please Wait..."}
+        buttonTitle={id ? "Update Category" : "Create Category"}
+        LoadingButtonTitle={`${
+          id ? "Updating" : "Creating"
+        } Category Please Wait...`}
       />
     </form>
   );

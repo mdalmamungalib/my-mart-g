@@ -1,7 +1,9 @@
 import React from "react";
 
-const UpdateCategory = () => {
-  return <div></div>;
+const UpdateBanner = () => {
+  return <div>
+    UpdateBanner
+  </div>;
 };
 
-export default UpdateCategory;
+export default UpdateBanner;

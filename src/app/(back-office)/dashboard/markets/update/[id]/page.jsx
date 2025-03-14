@@ -1,7 +1,7 @@
 import React from "react";
 
 const UpdateMarket = () => {
-  return <div></div>;
+  return <div>UpdateMarket</div>;
 };
 
 export default UpdateMarket;

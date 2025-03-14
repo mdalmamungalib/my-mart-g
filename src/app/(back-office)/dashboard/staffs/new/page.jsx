@@ -28,7 +28,7 @@ const NewStaff = () => {
   const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
-    router.push("/dashboard/staff");
+    router.push("/dashboard/staffs");
   }
 
   async function onSubmit(data) {
@@ -51,7 +51,7 @@ const NewStaff = () => {
 
     makePostRequest(
       setLoading,
-      "api/staff",
+      "/api/staffs",
       data,
       "Staffs",
       reset,

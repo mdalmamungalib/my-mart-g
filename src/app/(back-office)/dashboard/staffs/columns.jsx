@@ -32,16 +32,9 @@ export const columns = [
     enableHiding: false,
   },
   {
-    accessorKey: "title",
+    accessorKey: "name",
     header: ({ column }) => (
-      <SortableColumn column={column} title="Title" />
-    ),
-  },
-  {
-    accessorKey: "imageUrl",
-    header: "Image",
-    cell: ({ row }) => (
-      <ImageColumn row={row} accessorKey="imageUrl" />
+      <SortableColumn column={column} title="Name" />
     ),
   },
 
@@ -58,6 +51,16 @@ export const columns = [
   },
   {
     id: "actions",
-    cell: ({ row }) => <ActionColumn row={row} title="Coupons" />,
+    cell: ({ row }) => {
+      const staff = row.original;
+      return (
+        <ActionColumn
+          row={row}
+          title="Banner"
+          editEndpoint={`staffs/update/${staff.id}`}
+          endpoint={`staffs/${staff.id}`}
+        />
+      );
+    },
   },
 ];

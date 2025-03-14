@@ -6,17 +6,18 @@ import React from "react";
 import { columns } from "./columns";
 
 const page = async () => {
-  // const staffs = await getData("staff");
+  const staffs = await getData("staffs");
+  console.log(staffs);
   return (
     <div>
       {/* Header */}
       <PageHeader
         heading={"Staffs"}
-        href={"/dashboard/staff/new"}
+        href={"/dashboard/staffs/new"}
         LinkTitle={"Add Staff"}
       />
       <div className="">
-        {/* <DataTable data={staffs} columns={columns} /> */}
+        <DataTable data={staffs} columns={columns} filterKeys={["name"]}/>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 
-const UpdateCategory = () => {
+const UpdateProduct = () => {
   return <div>Welcome to Update Products page</div>;
 };
 
-export default UpdateCategory;
+export default UpdateProduct;
