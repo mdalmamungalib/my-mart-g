@@ -37,6 +37,15 @@ export const columns = [
       <SortableColumn column={column} title="Name" />
     ),
   },
+  {
+    accessorKey: "email",
+    header: "Email"
+  },
+  {
+    accessorKey: "phone",
+    header: "Phone Number",
+  },
+  
 
   {
     accessorKey: "isActive",

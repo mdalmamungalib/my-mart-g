@@ -57,41 +57,37 @@ export async function DELETE(request, { params: { id } }) {
   }
 }
 
-export async function PUT(request, { params: { id } }) {
-  try {
-    const { id, isActive, imageUrl, description, title, slug } =
-      await request.json();
 
-    // Check if category already exists
+export async function PUT(request, { params: {id} }) {
+  try {
+     
+    const { isActive, imageUrl, description, title, slug } = await request.json();
+
+    // Check if the category exists
     const existingCategory = await db.category.findUnique({
       where: { id },
     });
 
     if (!existingCategory) {
       return NextResponse.json(
-        {
-          data: null,
-          message: "Not Found",
-        },
+        { data: null, message: "Not Found" },
         { status: 404 }
       );
     }
 
-    // Create new category
-    const updateCategory = await db.category.update({
+    // Update category
+    const updatedCategory = await db.category.update({
       where: { id },
       data: { isActive, imageUrl, description, title, slug },
     });
 
-    return NextResponse.json(updateCategory, { status: 201 });
+    return NextResponse.json(updatedCategory, { status: 200 }); 
   } catch (error) {
     console.error("Error updating category:", error);
     return NextResponse.json(
-      {
-        message: "Failed to update Category",
-        error: error.message,
-      },
+      { message: "Failed to update Category", error: error.message },
       { status: 500 }
     );
   }
 }
+

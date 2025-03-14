@@ -53,7 +53,7 @@ const Sidebar = ({ showSidebar }) => {
     },
     {
       title: "Our Staff",
-      link: "/dashboard/staff",
+      link: "/dashboard/staffs",
       icons: BookUser,
     },
     {
