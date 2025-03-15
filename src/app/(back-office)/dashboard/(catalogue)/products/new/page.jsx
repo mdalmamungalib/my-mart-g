@@ -1,3 +1,5 @@
+import FormHeader from "components/backoffice/FormHeader/FormHeader";
+import ProductForm from "components/backoffice/Forms/ProductForm";
 import NewProductForm from "components/backoffice/NewProductForm/NewProductForm";
 import { getData } from "lib/getData";
 import React from "react";
@@ -26,7 +28,10 @@ const NewProduct = async () => {
   });
 
   return (
-    <NewProductForm sellers={sellers} categories={categories} />
+    <div>
+      <FormHeader title={"New Product"} />
+      <ProductForm sellers={sellers} categories={categories} />
+    </div>
   );
 };
 

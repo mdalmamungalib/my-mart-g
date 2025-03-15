@@ -74,7 +74,7 @@ export async function PUT(request, { params: { id } }) {
     }
 
     // Create new Banner
-    const updateBanner = await db.Banner.update({
+    const updateBanner = await db.banner.update({
       where: { id },
       data: { title, link, imageUrl, isActive },
     });
