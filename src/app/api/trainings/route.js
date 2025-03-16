@@ -12,6 +12,18 @@ export async function POST(request) {
       title,
       slug,
     } = await request.json();
+
+    const existingSlug = await db.training.findUnique({
+      where: { slug },
+    });
+
+    if (existingSlug) {
+      return NextResponse.json(
+        { message: "Slug already exists" },
+        { status: 400 }
+      );
+    }
+   
     const newTrainings = await db.training.create({
       data: {
         isActive,

@@ -40,6 +40,7 @@ export default function LoginForm() {
         reset();
         if (role === "USER") {
           router.push("/");
+          
         } else {
           router.push(`/onboarding/${responseData?.data?.id}`);
         }

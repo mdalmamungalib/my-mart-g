@@ -1,20 +1,26 @@
 "use client";
-
+import { makePostRequest, makePutRequest } from "lib/apiRequest.js";
+import { generateSlug } from "lib/generateSlug.js";
+import FormHeader from "components/backoffice/FormHeader/FormHeader.jsx";
 import ImageInput from "components/Forminput/ImageInput.jsx";
 import SubmitButton from "components/Forminput/SubmitButton.jsx";
+import TextareaInput from "components/Forminput/TextareaInput.jsx";
 import TextInput from "components/Forminput/TextInput.jsx";
+import SelectInput from "components/Forminput/SelectInput.jsx";
+import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import ToggleInput from "components/Forminput/ToggleInput.jsx";
-import { useRouter } from "next/navigation.js";
-import { makePostRequest, makePutRequest } from "lib/apiRequest";
+import QuillEditor from "components/Forminput/QuillEditor.jsx";
+import { useRouter } from "next/navigation";
 export const dynamic = "force-dynamic";
 
-const BannerForm = ({ updateData = {} }) => {
+const TrainingForm = ({ categories, updateData = {} }) => {
   const initialImageUrl = updateData.imageUrl ?? "";
   const id = updateData.id ?? "";
   const [imageUrl, setImageUrl] = useState(initialImageUrl);
+  const [content, setContent] = useState(updateData.content ?? "");
   const [loading, setLoading] = useState(false);
+
   const {
     register,
     reset,
@@ -28,40 +34,47 @@ const BannerForm = ({ updateData = {} }) => {
   const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
-    router.push("/dashboard/banners");
+    router.push("/dashboard/community");
     setTimeout(() => {
-      window.location.reload(); 
+      window.location.reload();
     }, 1000);
   }
-  async function onSubmit(data) {
-    setLoading(true);
+
+  const onSubmit = async (data) => {
+    const slug = generateSlug(data.title);
+    data.slug = slug;
     data.imageUrl = imageUrl;
+    data.content = content;
     console.log(data);
 
     if (id) {
-      //Make put request (update)
       data.id = id;
+      //Make put request (update)
       makePutRequest(
         setLoading,
-        `api/banners/${id}`,
+        `/api/trainings/${id}`,
         data,
-        "Banner",
+        "Training",
         reset,
-        redirect
-      );
-    } else {
-      //Make post request (create)
-      makePostRequest(
-        setLoading,
-        "/api/banners",
-        data,
-        "Banner",
-        reset,
-        redirect
+        redirect()
       );
       setImageUrl("");
+      setContent("");
+    } else {
+        //Make post request (create)
+      makePostRequest(
+        setLoading,
+        "/api/trainings",
+        data,
+        "Training",
+        reset,
+        redirect()
+      );
+      setImageUrl("");
+      setContent("");
     }
-  }
+  };
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -69,30 +82,41 @@ const BannerForm = ({ updateData = {} }) => {
     >
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <TextInput
-          label="Banner Title"
+          label="Training Title"
           name="title"
           register={register}
           errors={errors}
+          className="w-full"
         />
-        <TextInput
-          label="Banner Link"
-          name="link"
+        <SelectInput
+          label="Select Category"
+          name="categoryId"
+          register={register}
+          errors={errors}
+          className="w-full"
+          options={categories}
+        />
+        <TextareaInput
+          label="Training Description"
+          name="description"
           register={register}
           errors={errors}
         />
-
         <ImageInput
           imageUrl={imageUrl}
           setImageUrl={setImageUrl}
-          endpoint="bannerImageUploader"
-          label={"Banner Image"}
+          endpoint="trainingImageUploader"
+          label={"Training Thumbnail"}
         />
-
-        {/* toggle input */}
+        <QuillEditor
+          label={"Training Content"}
+          value={content}
+          onChange={setContent}
+        />
         <ToggleInput
           name={"isActive"}
           register={register}
-          label={"Publish Your Banner"}
+          label={"Publish Your Training"}
           falseTitle={"Draft"}
           trueTitle={"Active"}
           defaultChecked={isActive}
@@ -100,13 +124,13 @@ const BannerForm = ({ updateData = {} }) => {
       </div>
       <SubmitButton
         isLoading={loading}
-        buttonTitle={id ? "Update Banner" : "Create Banner"}
+        buttonTitle={id ? "Update Training" : "Create Training"}
         LoadingButtonTitle={`${
           id ? "Updating" : "Creating"
-        } Banner Please Wait...`}
+        } Training Please Wait...`}
       />
     </form>
   );
 };
 
-export default BannerForm;
+export default TrainingForm;

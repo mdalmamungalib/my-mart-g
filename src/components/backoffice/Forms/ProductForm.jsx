@@ -33,7 +33,7 @@ const ProductForm = ({ categories, sellers, updateData = {} }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      isActive: true,
+      isActive: false,
       isWholesale: false,
       isMultiple: false,
       ...updateData,
@@ -48,6 +48,9 @@ const ProductForm = ({ categories, sellers, updateData = {} }) => {
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/products");
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 1000);
   }
 
   async function onSubmit(data) {

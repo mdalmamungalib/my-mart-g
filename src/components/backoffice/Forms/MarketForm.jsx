@@ -27,9 +27,8 @@ const MarketForm = ({ categories, updateData = {} }) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      isActive: true,
-      isMultiple: (updateData.categoryIds?.length ?? 0) > 1,
-      categoryIds: updateData.categoryIds ?? [],
+      isActive: false,
+      isMultiple: false,
       ...updateData,
     },
   });
@@ -38,41 +37,44 @@ const MarketForm = ({ categories, updateData = {} }) => {
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/markets");
+    router.refresh()
   }
   async function onSubmit(data) {
-    const categoryIds = [].concat(data.categoryIds || []);
-  
+    const categoryIds = Array.isArray(data.categoryIds)
+      ? data.categoryIds
+      : [data.categoryIds];
     const slug = generateSlug(data.title);
     data.slug = slug;
     data.logoUrl = imageUrl;
-    data.categoryIds = categoryIds; 
-  
+    data.categoryIds = categoryIds;
     console.log(data);
-  
+
     if (id) {
-      data.id = id;
-      makePutRequest(
-        setLoading,
-        `/api/markets/${id}`,
-        data,
-        "Markets",
-        reset,
-        redirect()
-      );
-      setImageUrl("");
+        data.id = id;
+        //Make put request (update category)
+        makePutRequest(
+            setLoading,
+            `/api/markets/${id}`,
+            data,
+            "Markets",
+            reset,
+            redirect()
+          );
+          setImageUrl("");
+        
     } else {
-      makePostRequest(
-        setLoading,
-        "/api/markets",
-        data,
-        "Markets",
-        reset,
-        redirect()
-      );
-      setImageUrl("");
+        //Make post request (create category)
+        makePostRequest(
+            setLoading,
+            "/api/markets",
+            data,
+            "Markets",
+            reset,
+            redirect()
+          );
+          setImageUrl("");
     }
   }
-  
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -96,7 +98,6 @@ const MarketForm = ({ categories, updateData = {} }) => {
               className="w-full"
               options={categories}
               multiple={isMultiple}
-              defaultValues={updateData.categoryIds ?? []}
             />
 
             <ToggleInput
@@ -128,6 +129,7 @@ const MarketForm = ({ categories, updateData = {} }) => {
           label={"Market Status"}
           falseTitle={"Draft"}
           trueTitle={"Active"}
+          defaultChecked={isActive}
         />
       </div>
       <SubmitButton

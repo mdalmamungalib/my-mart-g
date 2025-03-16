@@ -22,16 +22,16 @@ const CouponForm = ({ updateData = {} }) => {
     reset,
     watch,
     handleSubmit,
-    setValue, // ✅ Used for setting expiryDate dynamically
+    setValue, 
     formState: { errors },
   } = useForm({
     defaultValues: {
-      isActive: true,
+      isActive: false,
       expiryDate: updateData.expiryDate
         ? new Date(updateData.expiryDate)
             .toISOString()
             .split("T")[0]
-        : "", // ✅ Ensures proper date format for input
+        : "", 
       ...updateData,
     },
   });
@@ -49,6 +49,9 @@ const CouponForm = ({ updateData = {} }) => {
 
   function redirect() {
     router.push("/dashboard/coupons");
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 1000);
   }
 
   async function onSubmit(data) {
@@ -116,6 +119,7 @@ const CouponForm = ({ updateData = {} }) => {
           label="Publish Your Coupon"
           falseTitle="Draft"
           trueTitle="Active"
+          defaultChecked={isActive}
         />
       </div>
 

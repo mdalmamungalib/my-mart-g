@@ -25,13 +25,16 @@ const NewSellerForm = ({ user = {} }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { isActive: true, ...user },
+    defaultValues: { isActive: false, ...user },
   });
 
   const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/sellers");
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 1000);
   }
 
   async function onSubmit(data) {
@@ -152,6 +155,7 @@ const NewSellerForm = ({ user = {} }) => {
           label={"Seller Status"}
           falseTitle={"Draft"}
           trueTitle={"Active"}
+          defaultChecked={isActive}
         />
       </div>
 

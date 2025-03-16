@@ -25,13 +25,16 @@ const NewMarketForm = ({ categories }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { isActive: true, isMultiple: false },
+    defaultValues: { isActive: false, isMultiple: false },
   });
   const isActive = watch("isActive");
   const isMultiple = watch("isMultiple");
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/markets");
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 1000);
   }
   async function onSubmit(data) {
     const categoryIds = Array.isArray(data.categoryIds)
@@ -109,6 +112,7 @@ const NewMarketForm = ({ categories }) => {
             label={"Market Status"}
             falseTitle={"Draft"}
             trueTitle={"Active"}
+            defaultChecked={isActive}
           />
         </div>
         <SubmitButton

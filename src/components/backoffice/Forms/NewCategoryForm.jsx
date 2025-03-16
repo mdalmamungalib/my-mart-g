@@ -26,13 +26,16 @@ const NewCategoryForm = ({ updateData = {} }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { isActive: true, ...updateData },
+    defaultValues: { isActive: false, ...updateData },
   });
 
   const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/categories");
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 1000);
   }
   async function onSubmit(data) {
     setLoading(true);
@@ -100,6 +103,7 @@ const NewCategoryForm = ({ updateData = {} }) => {
           label={"Publish Your Category"}
           falseTitle={"Draft"}
           trueTitle={"Active"}
+          defaultChecked={isActive}
         />
       </div>
       <SubmitButton

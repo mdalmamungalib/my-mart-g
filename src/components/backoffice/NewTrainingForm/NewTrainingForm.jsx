@@ -26,13 +26,16 @@ const NewTrainingForm = ({ categories }) => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { isActive: true },
+    defaultValues: { isActive: false },
   });
 
   const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/community");
+    setTimeout(() => {
+      window.location.reload(); 
+    }, 1000);
   }
 
   const onSubmit = async (data) => {
@@ -100,6 +103,7 @@ const NewTrainingForm = ({ categories }) => {
             label={"Publish Your Training"}
             falseTitle={"Draft"}
             trueTitle={"Active"}
+            defaultChecked={isActive}
           />
         </div>
         <SubmitButton
