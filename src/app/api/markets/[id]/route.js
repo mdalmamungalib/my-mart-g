@@ -1,4 +1,3 @@
-
 import db from "lib/db";
 import { NextResponse } from "next/server";
 
@@ -31,7 +30,10 @@ export async function DELETE(request, { params: { id } }) {
       },
     });
     if (!existingMarket) {
-      return NextResponse.json({data: null, message: 'market not found'}, {status: 404});
+      return NextResponse.json(
+        { data: null, message: "market not found" },
+        { status: 404 }
+      );
     }
     const deletedMarket = await db.market.delete({
       where: {
@@ -51,3 +53,55 @@ export async function DELETE(request, { params: { id } }) {
   }
 }
 
+export async function PUT(request, { params: { id } }) {
+  try {
+    const {
+      isActive,
+      categoryIds,
+      description,
+      logoUrl,
+      title,
+      slug,
+    } = await request.json();
+
+    const existingMarket = await db.market.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!existingMarket) {
+      return NextResponse.json(
+        {
+          data: null,
+          message: "The Market already exists",
+        },
+        { status: 409 }
+      );
+    }
+
+    const updateMarket = await db.market.update({
+      where: {
+        id,
+      },
+      data: {
+        isActive,
+        categoryIds,
+        description,
+        logoUrl,
+        title,
+        slug,
+      },
+    });
+    console.log(updateMarket);
+    return NextResponse.json(updateMarket);
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      {
+        message: "Failed to Update Market",
+        error,
+      },
+      { status: 500 }
+    );
+  }
+}

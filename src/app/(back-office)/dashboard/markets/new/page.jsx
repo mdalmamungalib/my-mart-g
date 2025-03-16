@@ -1,3 +1,5 @@
+import FormHeader from "components/backoffice/FormHeader/FormHeader";
+import MarketForm from "components/backoffice/Forms/MarketForm";
 import NewMarketForm from "components/backoffice/NewMarketForm/NewMarketForm";
 import { getData } from "lib/getData";
 import React from "react";
@@ -15,7 +17,10 @@ const NewMarket = async () => {
   });
 
   return (
-    <NewMarketForm categories={categories} />
+    <div>
+      <FormHeader title={"New Market"} />
+      <MarketForm categories={categories} />
+    </div>
   );
 };
 
