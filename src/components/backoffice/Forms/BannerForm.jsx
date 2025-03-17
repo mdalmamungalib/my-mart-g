@@ -31,7 +31,7 @@ const BannerForm = ({ updateData = {} }) => {
     router.push("/dashboard/banners");
     setTimeout(() => {
       window.location.reload(); 
-    }, 1000);
+    }, 1500);
   }
   async function onSubmit(data) {
     setLoading(true);

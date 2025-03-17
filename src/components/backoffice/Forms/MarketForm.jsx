@@ -37,7 +37,9 @@ const MarketForm = ({ categories, updateData = {} }) => {
   const router = useRouter();
   function redirect() {
     router.push("/dashboard/markets");
-    router.refresh()
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
   }
   async function onSubmit(data) {
     const categoryIds = Array.isArray(data.categoryIds)

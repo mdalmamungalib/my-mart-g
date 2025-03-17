@@ -37,7 +37,7 @@ const TrainingForm = ({ categories, updateData = {} }) => {
     router.push("/dashboard/community");
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 1500);
   }
 
   const onSubmit = async (data) => {
