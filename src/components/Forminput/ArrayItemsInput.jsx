@@ -3,11 +3,10 @@ import { Cookie, Plus, X } from "lucide-react";
 import React, { useState } from "react";
 export const dynamic = "force-dynamic";
 
-const ArrayItemsInput = ({ setItems, items, itemTitle }) => {
-  const [item, setItem] = useState("");
+const ArrayItemsInput = ({ setItems, items = [], itemTitle }) => {
+  const [item, setItem] = useState([]);
   const [showTagForm, setShowTagForm] = useState(false);
   const [error, setError] = useState("");
-  
 
   // Add item function
   function addItem() {
@@ -36,11 +35,21 @@ const ArrayItemsInput = ({ setItems, items, itemTitle }) => {
       {/* Internal CSS for shake animation */}
       <style jsx>{`
         @keyframes shake {
-          0% { transform: translateX(0); }
-          25% { transform: translateX(-4px); }
-          50% { transform: translateX(4px); }
-          75% { transform: translateX(-4px); }
-          100% { transform: translateX(0); }
+          0% {
+            transform: translateX(0);
+          }
+          25% {
+            transform: translateX(-4px);
+          }
+          50% {
+            transform: translateX(4px);
+          }
+          75% {
+            transform: translateX(-4px);
+          }
+          100% {
+            transform: translateX(0);
+          }
         }
 
         .shake {
@@ -63,7 +72,9 @@ const ArrayItemsInput = ({ setItems, items, itemTitle }) => {
               className={`border text-gray-900 text-sm rounded-lg 
                 focus:ring-lime-500 focus:border-lime-500 block w-full ps-10 p-2.5 
                 dark:border-gray-600 dark:placeholder-gray-400 dark:focus:ring-lime-500 
-                dark:focus:border-lime-500 ${error ? 'border-red-500 shake' : 'border-gray-300'}`}
+                dark:focus:border-lime-500 ${
+                  error ? "border-red-500 shake" : "border-gray-300"
+                }`}
               placeholder={`Create a ${itemTitle}...`}
               aria-label={`Create a new ${itemTitle}`}
             />
@@ -105,7 +116,7 @@ const ArrayItemsInput = ({ setItems, items, itemTitle }) => {
 
       {/* List of items */}
       <div className="flex flex-wrap gap-3 mt-4">
-        {items.map((item, i) => (
+        {  items?.map((item, i) => (
           <div
             key={i}
             className="flex items-center px-4 py-2 space-x-2 rounded-md dark:bg-slate-600 bg-slate-300"

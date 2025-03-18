@@ -37,6 +37,7 @@ export const columns = [
       <SortableColumn column={column} title="Title" />
     ),
   },
+  
   {
     accessorKey: "logoUrl",
     header: "Logo",

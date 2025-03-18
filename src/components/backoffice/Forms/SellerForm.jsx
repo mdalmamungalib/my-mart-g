@@ -13,7 +13,7 @@ import ArrayItemsInput from "components/Forminput/ArrayItemsInput";
 export const dynamic = "force-dynamic";
 
 const SellerForm = ({ user = {}, updateData = {} }) => {
-  const id = updateData.sellerProfile.id;
+  const id = updateData?.sellerProfile?.id;
   
   const initialProfileImageUrl =
     updateData?.sellerProfile?.profileImageUrl ?? "";

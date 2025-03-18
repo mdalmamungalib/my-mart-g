@@ -9,10 +9,13 @@ import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { makePostRequest, makePutRequest } from "lib/apiRequest.js";
 import generateUserCode from "lib/generateUserCode.js";
 import { useRouter } from "next/navigation";
+import { convertIsoDateNormal } from "lib/convertIsoDateNormal";
 export const dynamic = "force-dynamic";
 
 const StaffForm = ({ updateData = {} }) => {
+  const dateOfBerth = convertIsoDateNormal(updateData.dob);
   const id = updateData.id ?? "";
+  updateData.dob = dateOfBerth;
   const [loading, setLoading] = useState(false);
 
   const {
@@ -25,21 +28,10 @@ const StaffForm = ({ updateData = {} }) => {
   } = useForm({
     defaultValues: {
       isActive: false,
-      expiryDate: updateData.dob
-        ? new Date(updateData.dob).toISOString().split("T")[0]
-        : "",
+
       ...updateData,
     },
   });
-
-  useEffect(() => {
-    if (updateData.dob) {
-      setValue(
-        "dob",
-        new Date(updateData.dob).toISOString().split("T")[0]
-      );
-    }
-  }, [updateData, setValue]);
 
   const isActive = watch("isActive");
   const router = useRouter();

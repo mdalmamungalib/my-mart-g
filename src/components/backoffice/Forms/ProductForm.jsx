@@ -21,7 +21,8 @@ const ProductForm = ({ categories, sellers, updateData = {} }) => {
   const [imageUrl, setImageUrl] = useState(initialImageUrl);
 
   // tags
-  const [tags, setTags] = useState(updateData.tags ?? "");
+  const [tags, setTags] = useState(Array.isArray(updateData?.tags) ? updateData.tags : []);
+
   // loading
   const [loading, setLoading] = useState(false);
 
@@ -79,6 +80,8 @@ const ProductForm = ({ categories, sellers, updateData = {} }) => {
         reset,
         redirect
       );
+      setImageUrl("");
+      setTags([]);
     } else {
       //Make post request (create)
       makePostRequest(

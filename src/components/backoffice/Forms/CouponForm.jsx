@@ -9,11 +9,16 @@ import generateCouponCode from "lib/generateCouponCode.js";
 import ToggleInput from "components/Forminput/ToggleInput.jsx";
 import { generateisoFormattedDate } from "lib/generateisoFormattedDate.js";
 import { useRouter } from "next/navigation.js";
+import { convertIsoDateNormal } from "lib/convertIsoDateNormal";
 
 export const dynamic = "force-dynamic";
 
 const CouponForm = ({ updateData = {} }) => {
+  const expiryDateNormal = convertIsoDateNormal(
+    updateData.expiryDate
+  );
   const id = updateData.id ?? "";
+  updateData.expiryDate = expiryDateNormal;
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -22,35 +27,23 @@ const CouponForm = ({ updateData = {} }) => {
     reset,
     watch,
     handleSubmit,
-    setValue, 
+    setValue,
     formState: { errors },
   } = useForm({
     defaultValues: {
       isActive: false,
-      expiryDate: updateData.expiryDate
-        ? new Date(updateData.expiryDate)
-            .toISOString()
-            .split("T")[0]
-        : "", 
       ...updateData,
     },
   });
 
-  useEffect(() => {
-    if (updateData.expiryDate) {
-      setValue(
-        "expiryDate",
-        new Date(updateData.expiryDate).toISOString().split("T")[0]
-      );
-    }
-  }, [updateData, setValue]);
+ 
 
   const isActive = watch("isActive");
 
   function redirect() {
     router.push("/dashboard/coupons");
     setTimeout(() => {
-      window.location.reload(); 
+      window.location.reload();
     }, 1000);
   }
 

@@ -38,6 +38,10 @@ export const columns = [
     ),
   },
   {
+    accessorKey: "description",
+    header: "Description",
+  },
+  {
     accessorKey: "imageUrl",
     header: "Image",
     cell: ({ row }) => (
