@@ -6,7 +6,7 @@ const EmptyCart = () => {
     <div
       className="flex flex-col items-center justify-center min-h-[60vh] bg-cover bg-center p-6 rounded-lg"
       style={{
-        backgroundImage: `url('https://media.istockphoto.com/id/1145096265/photo/shopping-basket-on-floor-in-supermarket-aisle.jpg?s=612x612&w=0&k=20&c=CI3IUoNjSyWIaeV-00mCAINgk87ixiAmDcZIG1oz9pw=')`,
+        backgroundImage: `url('https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2023/09/Lakehouse_16_9_001-1-1-1.webp')`,
       }}
     >
       <div className="flex flex-col items-center p-8 space-y-4 text-center shadow-lg bg-white/80 dark:bg-black/70 rounded-xl">

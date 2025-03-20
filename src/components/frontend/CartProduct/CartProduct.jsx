@@ -86,7 +86,7 @@ const CartProduct = ({ cartItems }) => {
                 <td className="p-3 text-center">
                   <div className="flex items-center justify-center">
                     <TbCurrencyTaka className="w-5 h-5" />{" "}
-                    {item?.salePrice}
+                    {item?.qty * item?.salePrice}
                   </div>
                 </td>
                 <td className="p-3 text-center">
