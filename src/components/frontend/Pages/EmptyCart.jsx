@@ -4,7 +4,7 @@ import React from "react";
 const EmptyCart = () => {
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-[60vh] bg-cover bg-center p-6 rounded-lg"
+      className="flex flex-col items-center justify-center min-h-screen p-6 bg-center bg-cover rounded-lg"
       style={{
         backgroundImage: `url('https://www.microsoft.com/en-us/microsoft-365/blog/wp-content/uploads/sites/2/2023/09/Lakehouse_16_9_001-1-1-1.webp')`,
       }}

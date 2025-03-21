@@ -15,14 +15,14 @@ const NotFoundPage = () => {
       <h1 className="mt-6 text-5xl font-bold text-gray-800 dark:text-white">
         404
       </h1>
-      <p className="mt-2 text-lg text-gray-600 dark:text-gray-400">
+      <p className="mt-2 text-lg text-center text-gray-600 dark:text-gray-400">
         Oops! The page you are looking for doesn't exist.
       </p>
 
       {/* Redirect Button */}
       <Link
         href="/"
-        className="px-6 py-3 mt-6 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+        className="px-6 py-3 mt-6 text-lg font-semibold text-white rounded-lg shadow-md bg-lime-600 hover:bg-lime-700 dark:bg-lime-500 dark:hover:bg-lime-600"
       >
         Back to Shopping
       </Link>

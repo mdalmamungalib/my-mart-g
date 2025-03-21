@@ -9,15 +9,10 @@ import {
   removeFromCart,
 } from "../../../../redux/slices/cartSlice";
 import toast from "react-hot-toast";
-import EmptyCart from "../Pages/EmptyCart";
 
 const CartProduct = ({ cartItems }) => {
   const dispatch = useDispatch();
-  if (!cartItems || cartItems.length === 0) {
-    return (
-      <EmptyCart/>
-    );
-  }
+  
 
   function handleCartItemDelete(item) {
     dispatch(removeFromCart(item.id));
@@ -34,7 +29,7 @@ const CartProduct = ({ cartItems }) => {
       {/* Desktop Table */}
       <div className="hidden overflow-x-auto md:block">
         <table className="w-full border border-collapse border-gray-300">
-          <thead>
+          <thead >
             <tr className="text-gray-700 bg-gray-100">
               <th className="p-3 text-left">Product</th>
               <th className="p-3 text-center md:pl-16">Quantity</th>
@@ -43,9 +38,9 @@ const CartProduct = ({ cartItems }) => {
               <th className="p-3 text-center">Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody >
             {cartItems?.map((item, i) => (
-              <tr className="border-b" key={i}>
+              <tr className="border-b " key={i}>
                 <td className="flex items-center gap-4 p-3">
                   <Image
                     width={80}
@@ -134,11 +129,15 @@ const CartProduct = ({ cartItems }) => {
                   Quantity:
                 </span>
                 <div className="flex items-center border rounded-lg">
-                  <button className="px-3 py-2 border-r hover:bg-gray-200 hover:rounded-l-lg dark:hover:text-slate-800">
+                  <button
+                  onClick={() => handleQtyDecrement(item?.id)}
+                  className="px-3 py-2 border-r hover:bg-gray-200 hover:rounded-l-lg dark:hover:text-slate-800">
                     <Minus className="w-5 h-5" />
                   </button>
-                  <p className="px-4">2</p>
-                  <button className="px-3 py-2 border-l hover:bg-gray-200 hover:rounded-r-lg dark:hover:text-slate-800">
+                  <p className="px-4">{item?.qty}</p>
+                  <button
+                  onClick={() => handleQtyIncrement(item?.id)}
+                  className="px-3 py-2 border-l hover:bg-gray-200 hover:rounded-r-lg dark:hover:text-slate-800">
                     <Plus className="w-5 h-5" />
                   </button>
                 </div>
@@ -163,7 +162,7 @@ const CartProduct = ({ cartItems }) => {
                 </span>
                 <p className="flex items-center text-lg font-semibold">
                   <TbCurrencyTaka className="w-5 h-5" />{" "}
-                  {item?.salePrice}
+                  {item?.qty * item?.salePrice}
                 </p>
               </div>
               <button onClick={() => handleCartItemDelete(item)}>

@@ -2,6 +2,7 @@
 import BreadCrumb from "components/frontend/BreadCrumb/BreadCrumb";
 import CartProduct from "components/frontend/CartProduct/CartProduct";
 import CartSubTotalCart from "components/frontend/Pages/CartSubTotalCart";
+import EmptyCart from "components/frontend/Pages/EmptyCart";
 import { Minus, Plus, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +19,7 @@ const Cart = () => {
   },0).toFixed(2) ?? 0;
   console.log(cartItems);
   
+  
   // Convert pathname to breadcrumb items
   const pathSegments = pathname.split("/").filter((segment) => segment);
   const breadcrumbItems = pathSegments.map((segment, index) => {
@@ -28,6 +30,15 @@ const Cart = () => {
       current: index === pathSegments.length - 1, 
     };
   });
+  
+  if (!cartItems || cartItems.length === 0) {
+    return (
+      <div className="space-y-6">
+        <BreadCrumb items={breadcrumbItems}/>
+        <EmptyCart/>
+      </div>
+    );
+  }
   return (
     <div className="container mx-auto">
       <BreadCrumb items={breadcrumbItems}/>
