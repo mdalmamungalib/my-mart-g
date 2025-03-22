@@ -55,7 +55,7 @@ const NewSellerForm = ({ user = {} }) => {
     );
   }
   return (
-    <div className="">
+   
       
       <form
       onSubmit={handleSubmit(onSubmit)}
@@ -165,7 +165,7 @@ const NewSellerForm = ({ user = {} }) => {
         LoadingButtonTitle={"Creating Seller Please Wait..."}
       />
     </form>
-    </div>
+  
     
   );
 };
