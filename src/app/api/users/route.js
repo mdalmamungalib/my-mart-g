@@ -1,11 +1,13 @@
 import db from "../../../lib/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
-import {v4 as uuid4}from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import base64url from "base64url";
-import {Resend} from "resend";
+import { Resend } from "resend";
+import EmailTemplate from "components/email-template/EmailTemplate";
 
 export async function POST(request) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   try {
     //extract use credentials
 
@@ -27,6 +29,13 @@ export async function POST(request) {
     }
     //hash the password before storing it
     const hashedPassword = await bcrypt.hash(password, 10);
+
+    //Generate Token
+    // Generate a random UUID (version 4)
+    const rawToken = uuidv4();
+    console.log(rawToken);
+    // Encode the token using Base64 URL-safe format
+    const token = base64url.encode(rawToken);
     //if user does not exist, create a new one
     const newUser = await db.user.create({
       data: {
@@ -34,9 +43,28 @@ export async function POST(request) {
         email,
         password: hashedPassword,
         role,
+        verificationToken: token,
       },
     });
     console.log(newUser);
+
+    // SEND THE EMAIL IF USER ROLE === SELLER
+    if (role === "SELLER") {
+      //Send an Email with the Token on the link as a search param
+      const userId = newUser.id;
+      const linkText = "Verify Account";
+      const redirectUrl = `onboarding/${userId}?token=${token}`;
+      const sendMail = await resend.emails.send({
+        from: "Desishub <info@jazzafricaadventures.com>",
+        to: email,
+        subject: "Account Verification - My Mart Ecommerce",
+        react: EmailTemplate({ name, redirectUrl, linkText }),
+      });
+      console.log(sendMail);
+      //Upon Click redirect them to the login
+
+      console.log(token);
+    }
     return NextResponse.json(
       {
         data: newUser,
