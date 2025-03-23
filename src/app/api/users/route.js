@@ -1,6 +1,9 @@
 import db from "../../../lib/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import {v4 as uuid4}from "uuid";
+import base64url from "base64url";
+import {Resend} from "resend";
 
 export async function POST(request) {
   try {

@@ -55,7 +55,7 @@ export default function RegisterForm({ role = "USER" }) {
         if (role === "USER" || responseData.data.role === "USER") {
           router.push("/");
         } else {
-          router.push(`/onboarding/${responseData?.data?.id}`);
+          router.push("/verifyEmail");
         }
       } else {
         setLoading(false);
