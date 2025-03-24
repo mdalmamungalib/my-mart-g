@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import base64url from "base64url";
 import { Resend } from "resend";
-import EmailTemplate from "components/email-template/EmailTemplate";
+import sendEmail from "../sendEmail/sendEmail.jsx";
 
 export async function POST(request) {
   const resend = new Resend(process.env.RESEND_API_KEY);
@@ -52,23 +52,17 @@ export async function POST(request) {
     if (role === "SELLER") {
       //Send an Email with the Token on the link as a search param
       const userId = newUser.id;
-      const linkText = "Verify Account";
-      const redirectUrl = `onboarding/${userId}?token=${token}`;
-      const sendMail = await resend.emails.send({
-        from: "Desishub <info@jazzafricaadventures.com>",
-        to: email,
-        subject: "Account Verification - My Mart Ecommerce",
-        react: EmailTemplate({ name, redirectUrl, linkText }),
-      });
-      console.log(sendMail);
-      //Upon Click redirect them to the login
+      await sendEmail(email, name, token, userId); 
 
       console.log(token);
     }
+
+    const redirectUrl = `/verifyEmail?token=${token}`;
     return NextResponse.json(
       {
         data: newUser,
         message: "User created successfully",
+        redirectUrl
       },
       { status: 201 }
     );
