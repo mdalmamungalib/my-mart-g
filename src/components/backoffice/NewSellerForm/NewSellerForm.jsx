@@ -31,7 +31,7 @@ const NewSellerForm = ({ user = {} }) => {
   const isActive = watch("isActive");
   const router = useRouter();
   function redirect() {
-    router.push("/dashboard/sellers");
+    router.push("/login");
     setTimeout(() => {
       window.location.reload(); 
     }, 1000);

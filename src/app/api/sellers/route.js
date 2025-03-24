@@ -19,6 +19,32 @@ export async function POST(request) {
     //   storeSize,
     //   mainProduct,
     const sellerData = await request.json();
+
+     //check if user already exists by userId  (for uniqueness)
+     const existingUser = await db.user.findUnique({
+      where: {
+        id: sellerData.userId,
+      },
+    });
+    if (!existingUser) {
+      
+      return NextResponse.json(
+        {
+          data: null,
+          message: "No user found",
+        },
+        { status: 404 }
+      );
+    }
+    // Update emailVerified
+    const updateUser = await db.user.update({
+      where: {
+        id: sellerData.userId,
+      },
+      data: {
+        emailVerified: true,
+      }
+    })
     const newSellerProfile = await db.sellerProfile.create({
       data: {
         code: sellerData.code,
