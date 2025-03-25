@@ -11,6 +11,7 @@
   },
   "homepage": "./",
   "dependencies": {
+    "@auth/prisma-adapter": "^2.8.0",
     "@faker-js/faker": "^9.2.0",
     "@prisma/client": "^6.2.1",
     "@radix-ui/react-checkbox": "^1.1.4",
