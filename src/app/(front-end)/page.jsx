@@ -2,20 +2,22 @@ import CategoryList from "components/frontend/CategoryList/CategoryList";
 import CommunityTrainings from "components/frontend/CommunityTrainings/CommunityTrainings";
 import Hero from "components/frontend/Hero/Hero";
 import MarketList from "components/frontend/MarketList/MarketList";
+import { authOptions } from "lib/authOptions";
 import { getData } from "lib/getData";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const categoriesData = await getData("categories") || [];
-  
+  const categoriesData = (await getData("categories")) || [];
+
   const categories = categoriesData.filter((category) => {
-    return category.products?.length > 3 ;
-  })
-  
-  console.log(categories)
- 
-  
+    return category.products?.length > 3;
+  });
+
+  const session = await getServerSession(authOptions);
+  console.log("user session",session)
+
   return (
     <div className="min-h-screen space-y-5">
       <Hero />

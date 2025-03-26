@@ -9,6 +9,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "../app/api/uploadthing/core";
 import { Provider } from "react-redux";
 import { store } from "../../redux/store";
+import { SessionProvider } from "next-auth/react";
 const Providers = ({ children }) => {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
@@ -16,7 +17,9 @@ const Providers = ({ children }) => {
       <NextSSRPlugin
         routerConfig={extractRouterConfig(ourFileRouter)}
       />
-      <Provider store={store}>{children}</Provider>
+      <SessionProvider>
+        <Provider store={store}>{children}</Provider>
+      </SessionProvider>
     </ThemeProvider>
   );
 };

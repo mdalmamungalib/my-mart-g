@@ -1,12 +1,13 @@
 "use client";
-import SubmitButton from "components/Forminput/SubmitButton";
-import TextInput from "components/Forminput/TextInput";
-import { signIn } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 import toast from "react-hot-toast";
+import { FaGoogle, FaGithub } from "react-icons/fa";
+import Link from "next/link";
+import SubmitButton from "components/Forminput/SubmitButton";
+
 export const dynamic = "force-dynamic";
 
 export default function LoginForm() {
@@ -19,46 +20,26 @@ export default function LoginForm() {
   } = useForm();
   const [loading, setLoading] = useState(false);
   const [emailErr, setEmailErr] = useState("");
+
   async function onSubmit(data) {
     try {
-      console.log(data);
       setLoading(true);
-      const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-      const response = await fetch(`${baseUrl}/api/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+      const loginData = await signIn("credentials", {
+        ...data,
+        redirect: false,
       });
 
-      const responseData = await response.json();
-      if (response.ok) {
-        console.log(responseData);
-        setLoading(false);
-        toast.success("User Created Successfully");
-        reset();
-        if (role === "USER") {
-          router.push("/");
-          
-        } else {
-          router.push(`/onboarding/${responseData?.data?.id}`);
-        }
+      if (loginData?.error) {
+        toast.error("Invalid email or password. Please try again.");
       } else {
-        setLoading(false);
-        if (response.status === 409) {
-          setEmailErr("User with this Email already exists");
-          toast.error("User with this Email already exists");
-        } else {
-          // Handle other errors
-          console.error("Server Error:", responseData.error);
-          toast.error("Oops Something Went wrong");
-        }
+        toast.success("Login Successful!");
+        reset();
+        router.push("/");
       }
     } catch (error) {
+      toast.error("Network error. Please try again.");
+    } finally {
       setLoading(false);
-      console.error("Network Error:", error);
-      toast.error("Something Went wrong, Please Try Again");
     }
   }
 
@@ -91,21 +72,53 @@ export default function LoginForm() {
         {errors.password && <small className="text-red-600">{errors.password.message}</small>}
       </div>
 
+      {/* Forgot Password */}
+      <div className="flex justify-end">
+        <Link href="/forgot-password" className="text-sm text-lime-600 hover:underline dark:text-lime-500">
+          Forgot Password?
+        </Link>
+      </div>
+
       {/* Submit Button */}
       <SubmitButton
         isLoading={loading}
-        buttonTitle={"Login"}
-        LoadingButtonTitle={"Signing you in Please Wait..."}
-        style={"w-full text-center py-3 mt-4 text-white transition rounded-lg bg-lime-600 hover:bg-lime-700 active:scale-95"}
+        buttonTitle="Login"
+        LoadingButtonTitle="Signing in, please wait..."
+        style="w-full py-3 text-white transition rounded-lg bg-lime-600 hover:bg-lime-700 active:scale-95"
       />
+
+      {/* OR Divider */}
+      <div className="flex items-center">
+        <div className="w-full bg-gray-300 h-[1px]"></div>
+        <span className="mx-2 text-gray-500">OR</span>
+        <div className="w-full bg-gray-300 h-[1px]"></div>
+      </div>
+
+      {/* Social Login Buttons */}
+      <div className="space-y-3">
+        <button
+          type="button"
+          className="w-full flex items-center justify-center py-2.5 text-slate-950 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          onClick={() => signIn("google")}
+        >
+          <FaGoogle className="w-5 h-5 mr-2 text-red-600" />
+          Sign in with Google
+        </button>
+
+        <button
+          type="button"
+          className="w-full flex items-center justify-center py-2.5 text-white bg-gray-900 rounded-lg hover:bg-gray-800 focus:ring-4 focus:ring-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-500"
+          onClick={() => signIn("github")}
+        >
+          <FaGithub className="w-5 h-5 mr-2" />
+          Sign in with GitHub
+        </button>
+      </div>
 
       {/* Register Link */}
       <p className="mt-4 text-sm text-center text-gray-500 dark:text-gray-400">
-        Don't have an account?{" "}
-        <Link
-          href="/register"
-          className="font-medium text-lime-600 hover:underline dark:text-lime-500"
-        >
+        Don’t have an account?{" "}
+        <Link href="/register" className="font-medium text-lime-600 hover:underline dark:text-lime-500">
           Register
         </Link>
       </p>

@@ -1,10 +1,10 @@
 "use client"
-import { Plus } from "lucide-react";
+import { FiLogIn } from "react-icons/fi";
 import React from "react";
 
 export default function SubmitButton({ isLoading=false, buttonTitle, LoadingButtonTitle, style }) {
   return (
-    <div className="sm:col-span-1">
+    <div className=" sm:col-span-1">
       {isLoading ? (
         <button
           disabled
@@ -33,9 +33,9 @@ export default function SubmitButton({ isLoading=false, buttonTitle, LoadingButt
       ) : (
         <button
           type="submit"
-          className={`inline-flex items-center px-5 py-3 mt-4 text-sm font-medium text-center text-white rounded-lg sm:mt-6 focus:ring-4 focus:ring-lime-900 bg-lime-600 hover:bg-lime-800 ${style}`}
+          className={`flex items-center justify-center px-5 py-3 mt-4 text-sm font-medium text-center text-white rounded-lg sm:mt-6 focus:ring-4 focus:ring-lime-900 bg-lime-600 hover:bg-lime-800 ${style}`}
         >
-          <Plus className="w-5 h-5 mr-2" />
+          <FiLogIn className="w-5 h-5 mr-2" />
           <span>{buttonTitle}</span>
         </button>
       )}

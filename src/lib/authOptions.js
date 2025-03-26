@@ -43,7 +43,7 @@ export const authOptions = {
           //Check if Password is correct
           const passwordMatch = await compare(
             credentials.password,
-            existingUser.hashedPassword
+            existingUser.password
           );
           if (!passwordMatch) {
             console.log("Password incorrect");
