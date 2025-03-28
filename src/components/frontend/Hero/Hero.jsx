@@ -4,6 +4,7 @@ import HeroCarousel from "../HeroCarousel/HeroCarousel";
 import HeroSideToCards from "../Pages/HeroSideToCards";
 import HeroCategoryCard from "../Pages/HeroCategoryCard";
 import { getData } from "lib/getData";
+import UserAvatar from "components/backoffice/Forms/UserAvatar";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +13,7 @@ const Hero = async () => {
   const banners = await getData("banners");
   return (
     <div className="grid grid-cols-12 gap-1 mt-3 mb-6 sm:gap-3 md:gap-2 sm:mt-0 ">
+    
       {/* Category (Hidden on small screens, shown on lg screens) */}
       <div className="col-span-4 lg:col-span-3 md:col-span-4 sm:col-span-4">
         <HeroCategoryCard categories={categories}/>

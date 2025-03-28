@@ -20,15 +20,19 @@ import {
   DropdownMenuTrigger,
 } from "../../../components/ui/dropdown-menu";
 import ThemeSwitcherBtn from "../../../components/ThemeSwitcherBtn/ThemeSwitcherBtn";
+import UserAvatar from "../Forms/UserAvatar";
 
 const Navbar = ({ setShowSideBar, showSidebar }) => {
   return (
     <div className="flex items-center justify-between bg-slate-100 dark:bg-[#122136] h-16 z-50 px-8 py-8 fixed w-full text-lime-600">
       {/* icon */}
-      <button className="" onClick={() => setShowSideBar(!showSidebar)}>
+      <button
+        className=""
+        onClick={() => setShowSideBar(!showSidebar)}
+      >
         <AlignJustify />
       </button>
-      
+
       {/* 3 icon */}
       <div className="flex space-x-3 sm:pr-56">
         <DropdownMenu>
@@ -86,41 +90,7 @@ const Navbar = ({ setShowSideBar, showSidebar }) => {
           </DropdownMenuContent>
         </DropdownMenu>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <button>
-              <Image
-                src={Galib}
-                alt="User Profile"
-                width={200}
-                height={200}
-                className="w-8 h-8 rounded-full "
-              />
-            </button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="pl-4 pr-28">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <button className="flex items-center space-x-2">
-                <LayoutDashboard className="w-4 h-4 mr-2" />
-                <span>Dashboard</span>
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <button className="flex items-center space-x-2">
-                <Settings className="w-4 h-4 mr-2" />
-                <span>Edit Profile</span>
-              </button>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <button className="flex items-center space-x-2">
-                <LogOut className="w-4 h-4 mr-2" />
-                <span>Logout</span>
-              </button>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <UserAvatar />
       </div>
     </div>
   );

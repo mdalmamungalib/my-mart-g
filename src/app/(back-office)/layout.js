@@ -6,6 +6,7 @@ import Navbar from "components/backoffice/Navbar/Navbar";
 
 import { useState } from "react";
 import { SessionProvider } from "next-auth/react";
+import Providers from "context/Providers";
 
 const geistSans = localFont({
   src: "../fonts/GeistVF.woff",
@@ -21,7 +22,7 @@ const geistMono = localFont({
 export default function RootLayout({ children }) {
   const [showSidebar, setShowSideBar] = useState(false);
   return (
-    <SessionProvider>
+    <Providers>
     <div className="flex">
       {/* Sidebar */}
       <Sidebar showSidebar={showSidebar} />
@@ -45,6 +46,6 @@ export default function RootLayout({ children }) {
         </main>
       </div>
     </div>
-    </SessionProvider>
+    </Providers>
   );
 }
